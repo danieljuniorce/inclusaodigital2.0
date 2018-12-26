@@ -1,0 +1,22 @@
+
+  /* label color */
+  .input-field label {
+    color: #000;
+  }
+  /* icon prefix focus color */
+  .input-field .prefix.active {
+    color: #ffcc80;
+  }
+  .negrito{
+    font-weight: bolder;
+  }
+  body, main, footer {
+    padding-left: 330px;
+    padding-right: 10px;
+  }
+
+  @media only screen and (max-width : 992px) {
+    body, main, footer {
+      padding-left: 10px;
+    }
+  }
