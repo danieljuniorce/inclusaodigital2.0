@@ -6,41 +6,46 @@
             <br>
             <div class="row">
                 <div class="col s12 m12 l6">
-                        <h5 class="center-align">Quantidade de Alunos Cadastrados</h5>
+                        <h5 class="center-align">PARTICIPANTES</h5>
+                        <hr>
                         <br>
-
-                    <!-- TABELA COM DADOS DE ALUNOS CADASTRADOS -->
-
-                        <table class="highlight bordered responsive-table">
-                            <thead>
-                                <tr>
-                                    <th>Tipo de Cadastro</th>
-                                    <th>Visualizar</th>
-                                </tr>
-                            </thead>
-                            <tbody class="centered">
-                                <tr class="center-align">
-                                    <th>Ativos</th>
-                                    <th><a href="/adm/estados/ativo" class="btn btn-small center-align orange">VISUALIZAR</a></th>
-                                </tr>
-                                <tr>
-                                    <th>Pre-Incrição</th>
-                                    <th><a href="/adm/estados/pre_inscricao" class="btn orange">VISUALIZAR</a></th>
-                                </tr>
-                                <tr class="center-text">
-                                    <th>Inativo</th>
-                                    <th><a href="/adm/estados/inativo" class="btn orange">VISUALIZAR</a></th>
-                                </tr>
-                                <tr>
-                                    <th>Concludentes</th>
-                                    <th><a href="/adm/estados/concludente" class="btn orange">VISUALIZAR</a></th>
-                                </tr>
-                                <tr>
-                                    <th>Não Concludentes</th>
-                                    <th><a href="/adm/estados/nao_concludente" class="btn orange">VISUALIZAR</a></th>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <ul class="collapsible popout" data-collapsible="accordion">
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">filter_drama</i>PARTICIPANTES ATIVOS</div>
+                                <div class="collapsible-body">
+                                    <p class="center-align">Visualizar todos participantes</p>
+                                    <p class="center-align"><a href="/adm/estados/ativo" class="btn orange center-align">ATIVO</a></p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">filter_drama</i>PARTICIPANTES PRE-INSCRITOS</div>
+                                <div class="collapsible-body">
+                                    <p class="center-align">Visualizar todos participantes</p>
+                                    <p class="center-align"><a href="/adm/estados/pre_inscricao" class="btn orange center-align">PRE-INSCRITO</a></p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">filter_drama</i>PARTICIPANTES CONCLUDENTES</div>
+                                <div class="collapsible-body">
+                                    <p class="center-align">Visualizar todos participantes</p>
+                                    <p class="center-align"><a href="/adm/estados/concludente" class="btn orange center-align">CONCLUDENTES</a></p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">filter_drama</i>PARTICIPANTES NÃO CONCLUDENTES</div>
+                                <div class="collapsible-body">
+                                    <p class="center-align">Visualizar todos participantes</p>
+                                    <p class="center-align"><a href="/adm/estados/nao_concludente" class="btn orange center-align">NÃO CONCLUDENTES</a></p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">filter_drama</i>PARTICIPANTES INATIVOS</div>
+                                <div class="collapsible-body">
+                                    <p class="center-align">Visualizar todos participantes</p>
+                                    <p class="center-align"><a href="/adm/estados/inativo" class="btn orange center-align">INATIVOS</a></p>
+                                </div>
+                            </li>
+                        </ul>
                         <br>
                 </div>
                 <div class="col s12 m12 l6">

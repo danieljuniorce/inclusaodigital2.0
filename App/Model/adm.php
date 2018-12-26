@@ -33,7 +33,7 @@ class adm extends model
         }
     }
     public function estado($estadoParticipante){
-        $sql = "SELECT * FROM participantes WHERE estado_participante = '$estadoParticipante'";
+        $sql = "SELECT * FROM participantes WHERE estado_participante = '$estadoParticipante' ORDER BY nome_completo ASC";
         $sql = $this->pdo->query($sql);
 
         if($sql->rowCount() > 0){
@@ -111,7 +111,18 @@ class adm extends model
         $sql->bindParam(':turma', $numeroTurma);
         $sql->bindParam(':criacao', $dataCriacao);
         $sql->execute();
-
     }
 
+    public function turmas(){
+        $sql = "SELECT * FROM turmas";
+        $sql = $this->pdo->query($sql);
+
+        if($sql->rowCount() > 0)
+        {
+            return $sql->fetchAll();
+
+        } else {
+            return "Deu Ruim";
+        }
+    }
 }

@@ -34,14 +34,20 @@
             }else{
                 echo '<li><a href="/adm" class="waves-effect"><i class="material-icons">face</i>Participantes</a></li>';
                 echo '<li><a href="/adm/cadastrar" class="waves-effect"><i class="material-icons">add</i>Cadastrar</a></li>';
-                echo '<li><a href="/adm/criarturmas" class="waves-effect"><i class="material-icons">add</i>Turmas</a></li>';
+                echo '<li><a class="dropdown-button" href="#" data-activates="dropdown1"><i class="material-icons">reorder</i>Turmas</a></li>';
                 echo '<li><div class="divider"></div></li>';
                 echo '<li><a href="/usuarios/sair" class="waves-effect"><i class="material-icons">exit_to_app</i>Sair</a></li>';
             }
 
         ?>
-    </ul>                
-                
+    </ul>
+
+    <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="/adm/criarturmas"><i class="material-icons">add</i>Criar</a></li>
+        <li><a href="/adm/turmas"><i class="material-icons">view_column</i>Visualizar</a></li>
+    </ul>
+
+
     <nav class="orange z-depth-0  hide-on-large-only">
         <ul class="nav-wrapper">
             <li>
@@ -65,7 +71,12 @@
     $('.modal').modal();
     $("#btn").sideNav();
     $('.carousel').carousel();
-
+    $('.dropdown-button').dropdown({
+      belowOrigin: true, // Displays dropdown below the button
+      alignment: 'right', // Displays dropdown with edge aligned to the left of button
+      stopPropagation: true // Stops event propagation
+    }
+  );
   });    
 </script>
 </body>

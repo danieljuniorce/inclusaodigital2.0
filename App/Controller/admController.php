@@ -61,15 +61,15 @@
             $adm = new adm();
 
             if($estado == 'ativo'){
-                $dados['estado'] = 'Ativo';
+                $dados['estado'] = 'ATIVO';
             }else if($estado == 'pre_inscricao'){
-                $dados['estado'] = 'Pre-Inscrito';
+                $dados['estado'] = 'PRE-INSCRITO';
             }else if($estado == 'concludente'){
-                $dados['estado'] = 'Concludente';
+                $dados['estado'] = 'CONCLUDENTE';
             }else if($estado == 'nao_concludente'){
-                $dados['estado'] = 'Não Concludente';
+                $dados['estado'] = 'NÃO CONCLUDENTE';
             }else if($estado == 'inativo'){
-                $dados['estado'] = 'Inativo';
+                $dados['estado'] = 'INATIVO';
             }
 
             if(!empty($estado)){
@@ -132,6 +132,19 @@
             
 
             $this->template('criarturmas', $dados);
+        }
+        public function turmas()
+        {
+            $dados = array();
+            $adm = new adm();
+
+            if(!empty($_SESSION['acesso']) && $_SESSION['acesso'] == 'adm' ){
+                $dados['turmas'] = $adm->turmas();
+            }else{
+                $dados['turmas'];
+            }
+
+            $this->template('turmas', $dados);
         }
 
         //teste de funções
