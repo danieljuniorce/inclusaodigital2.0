@@ -60,8 +60,20 @@ class adm extends model
             }
         }
     }
+    public function visualizarTurmas()
+    {
+        $sqlPart = "SELECT * FROM turmas";
+        $sqlPart = $this->pdo->query($sqlPart);
 
-    public function atualizarDados($nomeCompleto, $dataNascimento, $tipoCurso, $estadoParticipante, $rg, $cpf, $turno, $horario, $celular, $telefone, $email, $senha, $matricula, $sexo)
+        if ($sqlPart->rowCount() > 0) {
+            return $sqlPart->fetchAll();
+        } else {
+            return false;
+        }
+        
+    }
+
+    public function atualizarDados($nomeCompleto, $dataNascimento, $tipoCurso, $estadoParticipante, $rg, $cpf, $turno, $horario, $celular, $telefone, $email, $senha, $matricula, $sexo, $turma)
     {
         $dados = array();
         if (isset($matricula) && !empty($matricula)) {
@@ -84,8 +96,9 @@ class adm extends model
                 $email = isset($email) && !empty($email) ? $email : $dados['email'];
                 $senha = isset($senha) && !empty($senha) ? $senha : $dados['senha'];
                 $sexo = isset($sexo) && !empty($sexo) ? $sexo : $dados['sexo'];
+                $turma = isset($turma) && !empty($turma) ? $turma : $dados['turma'];
 
-                $sqlAtt = "UPDATE participantes SET nome_completo = '$nomeCompleto', data_nascimento = '$dataNascimento', tipo_curso = '$tipoCurso', estado_participante = '$estadoParticipante', rg = '$rg', cpf = '$cpf', turno = '$turno', horario = '$horario', celular = '$celular', telefone = '$telefone', email = '$email', senha = '$senha', sexo = '$sexo' WHERE matricula = '$matricula'";
+                $sqlAtt = "UPDATE participantes SET nome_completo = '$nomeCompleto', data_nascimento = '$dataNascimento', tipo_curso = '$tipoCurso', estado_participante = '$estadoParticipante', rg = '$rg', cpf = '$cpf', turno = '$turno', horario = '$horario', celular = '$celular', telefone = '$telefone', email = '$email', senha = '$senha', sexo = '$sexo', turma = '$turma' WHERE matricula = '$matricula'";
                 $sqlAtt = $this->pdo->query($sqlAtt);
 
             } else {
@@ -96,15 +109,17 @@ class adm extends model
         }
     }
 
-    public function criarturmas($dataInicio, $dataFinal, $numeroTurma, $dataCriacao)
+    public function criarturmas($dataInicio, $dataFinal, $numeroTurma, $dataCriacao, $curso, $turno)
     {
-        $sql = "INSERT INTO turmas SET inicio = :inico, final = :fim, turma = :turma, criacao = :criacao";
+        $sql = "INSERT INTO turmas SET inicio = :inico, final = :fim, turma = :turma, criacao = :criacao, curso = :curso, turno = :turno";
         $sql = $this->pdo->prepare($sql);
 
         $sql->bindParam(':inico', $dataInicio);
         $sql->bindParam(':fim', $dataFinal);
         $sql->bindParam(':turma', $numeroTurma);
         $sql->bindParam(':criacao', $dataCriacao);
+        $sql->bindParam(':curso', $curso);
+        $sql->bindParam(':turno', $turno);
         $sql->execute();
     }
 

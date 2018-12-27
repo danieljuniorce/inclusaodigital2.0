@@ -214,6 +214,37 @@
                 </div>
             </div>
             <div class="col s12 m6 l6">
+                <div class="input-field">
+                    <?php
+                        if ($dados['turma'] == '') {
+                            echo '<select name="turma" id="turmas">';
+                                echo '<option value="" disabled selected>Escolha a turma</option>';
+                            foreach ($turmas as $turmas) {
+                                if ($turmas['curso'] == 'informatica_basica')
+                                {
+                                    $turma = 'Informática Básica';
+                                } else if($turmas['curso'] == 'excel_avancado') {
+                                    $turma = 'Excel Avançado';
+                                } else {
+                                    $turma = 'Excel Intensivo';
+                                }
+
+                                if ($turmas['turno'] == 'tarde') {
+                                    $turno = 'Manhã';
+                                } else {
+                                    $turno = 'Tarde';
+                                }
+                                echo '<option value="'.$turmas['turma'].'">Nº: '.$turmas['turma'].' Curso: '.$turma.' - '.$turno.'</option>';
+                            }
+                            
+                            echo '</select>';
+                            echo '<label for="turmas">Turmas</label>';
+                        } else {
+                            echo '<input type="number" id="turma" name="turma" placeholder="'.$dados['turma'].'";>';
+                            echo '<label for="turma">Turma</label>';
+                        }
+                    ?>    
+                </div>
             </div>
         </div>
         <div class="row">

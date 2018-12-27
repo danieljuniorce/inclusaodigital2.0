@@ -92,6 +92,7 @@ class admController extends controller
         //Vizualizar os dados
         if (!empty($matricula)) {
             $dados['dados'] = $adm->vizualizarDados($matricula);
+            $dados['turmas'] = $adm->visualizarTurmas();
 
             if (isset($_POST['matricula']) && !empty($_POST['matricula'])) {
 
@@ -109,8 +110,9 @@ class admController extends controller
                 $senha = filter_var(md5($_POST['senha']));
                 $email = filter_var($_POST['email']);
                 $sexo = filter_var($_POST['sexo']);
+                $turma = filter_var($_POST['turma']);
 
-                $adm->atualizarDados($nomeCompleto, $dataNascimento, $tipoCurso, $estadoParticipante, $rg, $cpf, $turno, $horario, $celular, $telefone, $email, $senha, $matricula, $sexo);
+                $adm->atualizarDados($nomeCompleto, $dataNascimento, $tipoCurso, $estadoParticipante, $rg, $cpf, $turno, $horario, $celular, $telefone, $email, $senha, $matricula, $sexo, $turma);
 
                 header('Location: /adm/sucesso');
             }
@@ -131,8 +133,9 @@ class admController extends controller
             $dataFinal = filter_var($_POST['final']);
             $numeroTurma = filter_var($_POST['turma']);
             $dataCriacao = date('Y-m-d');
-            $adm->criarturmas($dataInicio, $dataFinal, $numeroTurma, $dataCriacao);
-
+            $curso = filter_var($_POST['curso']);
+            $turno = filter_var($_POST['turno']);
+            $adm->criarturmas($dataInicio, $dataFinal, $numeroTurma, $dataCriacao, $curso, $turno);
             header('Location: /adm/sucesso');
         }
 
