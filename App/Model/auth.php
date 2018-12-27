@@ -1,5 +1,6 @@
 <?php
 
-    class auth extends model{
+class Auth extends model
+{
 
-    }
+}

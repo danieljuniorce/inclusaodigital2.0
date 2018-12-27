@@ -76,25 +76,25 @@
                     <i class="material-icons prefix">done</i>
                     <select name="estado_participante" id="estado_participante">
                     <?php
-                        if($dados['estado_participante'] == 'ativo'){
+                        if ($dados['estado_participante'] == 'ativo') {
                             echo '<option value="ativo" selected>Ativo</option>';
                             echo '<option value="inativo">Inativo</option>';
                             echo '<option value="pre_inscrito">Pre-Inscrito</option>';
                             echo '<option value="concludente">Concludente</option>';
                             echo '<option value="nao_concludente">Não Concludente</option>';
-                        }else if($dados['estado_participante'] == 'pre_inscrito'){
+                        } else if ($dados['estado_participante'] == 'pre_inscrito') {
                             echo '<option value="ativo">Ativo</option>';
                             echo '<option value="inativo">Inativo</option>';
                             echo '<option value="pre_inscrito" selected>Pre-Inscrito</option>';
                             echo '<option value="concludente">Concludente</option>';
                             echo '<option value="nao_concludente">Não Concludente</option>';
-                        }else if($dados['estado_participante'] == 'concludente'){
+                        } else if ($dados['estado_participante'] == 'concludente') {
                             echo '<option value="ativo">Ativo</option>';
                             echo '<option value="inativo">Inativo</option>';
                             echo '<option value="pre_inscrito">Pre-Inscrito</option>';
                             echo '<option value="concludente" selected>Concludente</option>';
                             echo '<option value="nao_concludente">Não Concludente</option>';
-                        }else{
+                        } else {
                             echo '<option value="ativo">Ativo</option>';
                             echo '<option value="inativo">Inativo</option>';
                             echo '<option value="pre_inscrito">Pre-Inscrito</option>';
@@ -111,10 +111,10 @@
                     <i class="material-icons prefix">update</i>
                     <select name="turno" id="turno">
                         <?php 
-                            if($dados['turno'] == 'manha'){
+                            if ($dados['turno'] == 'manha'){
                                 echo '<option value="manha" selected>Manhã</option>';
                                 echo '<option value="tarde" >Tarde</option>';
-                            }else{
+                            } else {
                                 echo '<option value="tarde" selected>Tarde</option>';
                                 echo '<option value="manha" >Manhã</option>';
                             }

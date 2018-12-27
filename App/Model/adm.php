@@ -9,70 +9,66 @@
 class adm extends model
 {
 
-    public function novoParticipante($nomeCompleto, $dataNascimento, $tipoCurso, $estadoParticipante, $rg, $cpf, $matricula, $turno, $horario, $celular, $telefone, $email, $sexo){
+    public function novoParticipante($nomeCompleto, $dataNascimento, $tipoCurso, $estadoParticipante, $rg, $cpf, $matricula, $turno, $horario, $celular, $telefone, $email, $sexo)
+    {
 
-        if(isset($nomeCompleto) && isset($dataNascimento) && isset($tipoCurso) && isset($estadoParticipante) && isset($celular) && isset($matricula)){
+        if (isset($nomeCompleto) && isset($dataNascimento) && isset($tipoCurso) && isset($estadoParticipante) && isset($celular) && isset($matricula)) {
             //Inciando a query;
             $sql = "INSERT INTO participantes SET nome_completo = '$nomeCompleto', data_nascimento = '$dataNascimento', tipo_curso = '$tipoCurso', estado_participante = '$estadoParticipante', rg = '$rg', cpf = '$cpf', matricula = '$matricula', turno = '$turno', horario = '$horario', celular = '$celular', telefone = '$telefone', email = '$email', sexo = '$sexo'";
             $sql = $this->pdo->query($sql);
-            
 
             //Verificando se foi inserido o participante;
             $sql = "SELECT * FROM participantes WHERE matricula = '$matricula' AND data_nascimento = '$dataNascimento'";
             $sql = $this->pdo->query($sql);
-            if($sql->rowCount() > 0){
+            if ($sql->rowCount() > 0) {
                 header('Location: /adm/sucesso');
                 return true;
-            }else{
+            } else {
                 header('Location: /adm/falhou');
                 return false;
             }
-        }else{
+        } else {
             header('Location: /adm/falhou');
             return false;
         }
     }
-    public function estado($estadoParticipante){
+    public function estado($estadoParticipante)
+    {
         $sql = "SELECT * FROM participantes WHERE estado_participante = '$estadoParticipante' ORDER BY nome_completo ASC";
         $sql = $this->pdo->query($sql);
 
-        if($sql->rowCount() > 0){
-            
+        if ($sql->rowCount() > 0) {
+
             return $sql->fetchAll();
-        }else{
+        } else {
             return false;
         }
 
-        
     }
-
 
     public function vizualizarDados($matricula)
     {
-        if(!empty($matricula)){
+        if (!empty($matricula)) {
             $sql = "SELECT * FROM participantes WHERE matricula = '$matricula'";
 
             $sql = $this->pdo->query($sql);
 
-            if($sql->rowCount() > 0){
+            if ($sql->rowCount() > 0) {
                 return $sql->fetch();
-            }else{
+            } else {
                 return "Nenhum resultado encontrado";
             }
         }
     }
 
     public function atualizarDados($nomeCompleto, $dataNascimento, $tipoCurso, $estadoParticipante, $rg, $cpf, $turno, $horario, $celular, $telefone, $email, $senha, $matricula, $sexo)
-        
     {
         $dados = array();
-        if(isset($matricula) && !empty($matricula))
-        {
+        if (isset($matricula) && !empty($matricula)) {
             $sql = "SELECT * FROM participantes WHERE matricula = '$matricula'";
             $sql = $this->pdo->query($sql);
 
-            if($sql->rowCount() > 0)
-            {
+            if ($sql->rowCount() > 0) {
                 $dados = $sql->fetch();
 
                 $nomeCompleto = isset($nomeCompleto) && !empty($nomeCompleto) ? $nomeCompleto : $dados['nome_completo'];
@@ -92,17 +88,16 @@ class adm extends model
                 $sqlAtt = "UPDATE participantes SET nome_completo = '$nomeCompleto', data_nascimento = '$dataNascimento', tipo_curso = '$tipoCurso', estado_participante = '$estadoParticipante', rg = '$rg', cpf = '$cpf', turno = '$turno', horario = '$horario', celular = '$celular', telefone = '$telefone', email = '$email', senha = '$senha', sexo = '$sexo' WHERE matricula = '$matricula'";
                 $sqlAtt = $this->pdo->query($sqlAtt);
 
-            }else{
+            } else {
                 $dados = "Dados não encontrado";
             }
-        }else{
+        } else {
             $dados = "Dados não encontrado";
         }
-
-
     }
 
-    public function criarturmas($dataInicio, $dataFinal, $numeroTurma, $dataCriacao){
+    public function criarturmas($dataInicio, $dataFinal, $numeroTurma, $dataCriacao)
+    {
         $sql = "INSERT INTO turmas SET inicio = :inico, final = :fim, turma = :turma, criacao = :criacao";
         $sql = $this->pdo->prepare($sql);
 
@@ -113,14 +108,13 @@ class adm extends model
         $sql->execute();
     }
 
-    public function turmas(){
+    public function turmas()
+    {
         $sql = "SELECT * FROM turmas";
         $sql = $this->pdo->query($sql);
 
-        if($sql->rowCount() > 0)
-        {
+        if ($sql->rowCount() > 0) {
             return $sql->fetchAll();
-
         } else {
             return "Deu Ruim";
         }
