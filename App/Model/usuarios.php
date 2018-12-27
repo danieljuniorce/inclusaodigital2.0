@@ -22,9 +22,9 @@
                     $_SESSION['matricula'] = $user['matricula'];
                     $_SESSION['nome_completo'] = $user['nome_completo'];
                     $_SESSION['acesso'] = $user['acesso'];
-                    header('Location: /home');
 
                     return $user;
+                    header('Location: /home');
                 }
             }else{
                 return 'Deu ruim 2.0';

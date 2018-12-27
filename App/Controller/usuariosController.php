@@ -23,12 +23,10 @@
                 $matricula = filter_var($_POST['matricula']);
                 $senha = filter_var(md5($_POST['senha']));
                 
-                $dados['aviso'] = 'Deu bom!';
-                $dados['matricula'] = $matricula;
-                $dados['senha'] = $senha;
-                $dados['aviso20'] = $u->entrar($matricula, $senha);
+                $u->entrar($matricula, $senha);
+                header('Location: /home');
             } else {
-                $dados['aviso'] = 'Deu ruim!';
+                header('Location: /teste');
             }
         }
 
