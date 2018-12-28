@@ -129,13 +129,16 @@ class admController extends controller
         $dados = array();
 
         if (!empty($_POST['inicio']) && !empty($_POST['final']) && !empty($_POST['turma'])) {
+
             $dataInicio = filter_var($_POST['inicio']);
             $dataFinal = filter_var($_POST['final']);
             $numeroTurma = filter_var($_POST['turma']);
             $dataCriacao = date('Y-m-d');
             $curso = filter_var($_POST['curso']);
             $turno = filter_var($_POST['turno']);
-            $adm->criarturmas($dataInicio, $dataFinal, $numeroTurma, $dataCriacao, $curso, $turno);
+            $horario = filter_var($_POST['horario']);
+
+            $adm->criarturmas($dataInicio, $dataFinal, $numeroTurma, $dataCriacao, $curso, $turno, $horario);
             header('Location: /adm/sucesso');
         }
 
@@ -153,6 +156,32 @@ class admController extends controller
         }
 
         $this->template('turmas', $dados);
+    }
+
+    public function editarturma($turma)
+    {
+        $dados = array();
+        $dados['turmas'] = $turma;
+        $adm = new adm();
+        if (isset($turma) && !empty($turma)) {
+            $dados['turma'] = $adm->visualiazarTurma($turma);
+
+            if (isset($_POST['turma']) && !empty($_POST['turma'])) {
+                $dataInicio = filter_var($_POST['inicio']);
+                $dataFinal = filter_var($_POST['final']);
+                $dataCriacao = filter_var($_POST['criacao']);
+                $curso = filter_var($_POST['curso']);
+                $turno = filter_var($_POST['turno']);
+                $horario = filter_var($_POST['horario']);
+
+    
+                $adm->editarTurmas($turma, $dataInicio, $dataFinal, $curso, $turno, $horario);
+                header('Location: /adm/sucesso');
+            }
+        } else {
+            header('Location: /adm/falhou');
+        }
+        $this->template('editarturmas', $dados);
     }
 
     //teste de funções

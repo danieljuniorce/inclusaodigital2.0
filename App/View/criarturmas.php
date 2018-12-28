@@ -46,6 +46,23 @@ $idTurma = date('Y') . rand(1, 200);
     </div>
     <div class="row container">
         <div class="col s12 m6 l6">
+            <div class="input-field s12">
+                <select name="curso" id="curso">
+                    <option value="" disabled selected>Selecione o Curso</option>
+                    <option value="primeiro_horario">08:00 as 09:30</option>
+                    <option value="segundo_horario">09:30 as 11:00</option>
+                    <option value="terceiro_horario">13:00 as 14:30</option>
+                    <option value="quarto_horario">14:30 as 16:00</option>
+                </select>
+                <label for="curso">Horário</label>
+            </div>
+        </div>
+        <div class="col s12 m6 l6">
+            <div class="input-field s12">
+        </div>
+    </div>
+    <div class="row container">
+        <div class="col s12 m6 l6">
         </div>
         <div class="col s12 m6 l6">
             <div class="input-field s12">

@@ -24,17 +24,17 @@
         </li>
         <?php
 
-            if ($_SESSION['acesso'] == 'user')
-            {
+            if ($_SESSION['acesso'] == 'user') {
                 echo '<li><a href="" class="waves-effect"><i class="material-icons">book</i>Seu Curso</a></li>';
                 echo '<li><a href="" class="waves-effect"><i class="material-icons">book</i>Acâdemico</a></li>';
 
                 echo '<li><div class="divider"></div></li>';
                 echo '<li><a href="/usuarios/sair" class="waves-effect"><i class="material-icons">book</i>Sair</a></li>';
-            }else{
+            } else {
                 echo '<li><a href="/adm" class="waves-effect"><i class="material-icons">face</i>Participantes</a></li>';
                 echo '<li><a href="/adm/cadastrar" class="waves-effect"><i class="material-icons">add</i>Cadastrar</a></li>';
-                echo '<li><a class="dropdown-button" href="#" data-activates="dropdown1"><i class="material-icons">reorder</i>Turmas</a></li>';
+                echo '<li><a class="dropdown-button" href="#" data-activates="turma"><i class="material-icons left">reorder</i><i class="material-icons right">arrow_drop_down</i>Turmas</a></li>';
+                echo '<li><a class="dropdown-button" href="#" data-activates="requerimentos"><i class="material-icons left">vertical_split</i><i class="material-icons right">arrow_drop_down</i>Requerimentos</a></li>';
                 echo '<li><div class="divider"></div></li>';
                 echo '<li><a href="/usuarios/sair" class="waves-effect"><i class="material-icons">exit_to_app</i>Sair</a></li>';
             }
@@ -42,9 +42,14 @@
         ?>
     </ul>
 
-    <ul id='dropdown1' class='dropdown-content'>
+    <ul id='turma' class='dropdown-content'>
         <li><a href="/adm/criarturmas"><i class="material-icons">add</i>Criar</a></li>
         <li><a href="/adm/turmas"><i class="material-icons">view_column</i>Visualizar</a></li>
+    </ul>
+
+    <ul id='requerimentos' class='dropdown-content'>
+        <li><a href="/adm/criarturmas"><i class="material-icons">class</i>Pendentes</a></li>
+        <li><a href="/adm/turmas"><i class="material-icons">verified_user</i>Fechados</a></li>
     </ul>
 
 
@@ -74,7 +79,8 @@
     $('.dropdown-button').dropdown({
       belowOrigin: true, // Displays dropdown below the button
       alignment: 'right', // Displays dropdown with edge aligned to the left of button
-      stopPropagation: true // Stops event propagation
+      stopPropagation: false, // Stops event propagation
+      hover: true //
     }
   );
   });    

@@ -100,7 +100,7 @@ class adm extends model
 
                 $sqlAtt = "UPDATE participantes SET nome_completo = '$nomeCompleto', data_nascimento = '$dataNascimento', tipo_curso = '$tipoCurso', estado_participante = '$estadoParticipante', rg = '$rg', cpf = '$cpf', turno = '$turno', horario = '$horario', celular = '$celular', telefone = '$telefone', email = '$email', senha = '$senha', sexo = '$sexo', turma = '$turma' WHERE matricula = '$matricula'";
                 $sqlAtt = $this->pdo->query($sqlAtt);
-
+                return $dados;
             } else {
                 $dados = "Dados não encontrado";
             }
@@ -109,9 +109,9 @@ class adm extends model
         }
     }
 
-    public function criarturmas($dataInicio, $dataFinal, $numeroTurma, $dataCriacao, $curso, $turno)
+    public function criarturmas($dataInicio, $dataFinal, $numeroTurma, $dataCriacao, $curso, $turno, $horario)
     {
-        $sql = "INSERT INTO turmas SET inicio = :inico, final = :fim, turma = :turma, criacao = :criacao, curso = :curso, turno = :turno";
+        $sql = "INSERT INTO turmas SET inicio = :inico, final = :fim, turma = :turma, criacao = :criacao, curso = :curso, turno = :turno, horario = :horario";
         $sql = $this->pdo->prepare($sql);
 
         $sql->bindParam(':inico', $dataInicio);
@@ -120,6 +120,7 @@ class adm extends model
         $sql->bindParam(':criacao', $dataCriacao);
         $sql->bindParam(':curso', $curso);
         $sql->bindParam(':turno', $turno);
+        $sql->bindParam(':horario', $horario);
         $sql->execute();
     }
 
@@ -132,6 +133,38 @@ class adm extends model
             return $sql->fetchAll();
         } else {
             return "Deu Ruim";
+        }
+    }
+
+    public function visualiazarTurma($turma) {
+        if (isset($turma) && !empty($turma)) {
+            $sql = "SELECT * FROM turmas WHERE turma = '$turma'";
+            $sql = $this->pdo->query($sql);
+            
+            if ($sql->rowCount() > 0) {
+                return $sql->fetch();
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public function editarTurmas($turma, $dataInicio, $dataFinal, $curso, $turno, $horario)
+    {
+        if (isset($turma) && !empty($turma)) {
+
+                $dataInicio = isset($dataInicio) && !empty($dataInicio) ? $dataInicio : $dados['inicio'];
+                $dataFinal = isset($dataFinal) && !empty($dataFinal) ? $dataFinal : $dados['final'];
+                $dataCriacao = isset($dataCriacao) && !empty($dataCriacao) ? $dataCriacao : $dados['criacao'];
+                $curso = isset($curso) && !empty($curso) ? $curso : $dados['curso'];
+                $turno = isset($turno) && !empty($turno) ? $turno : $dados['turno'];
+                $horario = isset($horario) && !empty($horario) ? $horario : $dados['horario'];
+    
+                $sqlAtt = "UPDATE turmas SET inicio = '$dataInicio', final = '$dataFinal', curso = '$curso', turno = '$turno', horario = '$horario' WHERE turma = '$turma'";
+                $sqlAtt = $this->pdo->query($sqlAtt);
+
+        } else {
+            $dados = "Turma não Encontrada";
         }
     }
 }
