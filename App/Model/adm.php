@@ -12,10 +12,13 @@ class adm extends model
     public function novoParticipante($nomeCompleto, $dataNascimento, $tipoCurso, $estadoParticipante, $rg, $cpf, $matricula, $turno, $horario, $celular, $telefone, $email, $sexo)
     {
 
-        if (isset($nomeCompleto) && isset($dataNascimento) && isset($tipoCurso) && isset($estadoParticipante) && isset($celular) && isset($matricula)) {
+        if (isset($nomeCompleto) && isset($dataNascimento) && isset($estadoParticipante) && isset($celular) && isset($matricula)) {
             //Inciando a query;
             $sql = "INSERT INTO participantes SET nome_completo = '$nomeCompleto', data_nascimento = '$dataNascimento', tipo_curso = '$tipoCurso', estado_participante = '$estadoParticipante', rg = '$rg', cpf = '$cpf', matricula = '$matricula', turno = '$turno', horario = '$horario', celular = '$celular', telefone = '$telefone', email = '$email', sexo = '$sexo'";
             $sql = $this->pdo->query($sql);
+
+            $sqlNotas = "INSERT INTO notas SET matricula_participante = '$matricula'";
+            $sqlNotas = $this->pdo->query($sqlNotas);
 
             //Verificando se foi inserido o participante;
             $sql = "SELECT * FROM participantes WHERE matricula = '$matricula' AND data_nascimento = '$dataNascimento'";

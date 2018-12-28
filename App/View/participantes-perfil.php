@@ -1,8 +1,10 @@
 <div class="card-panel">
+        <div class="orange">
+            <br>
+            <h5 class="center-align color-white"><span class="text-white">Participante: <?php echo $dados['nome_completo'];?> - Matricula: <?php echo $dados['matricula'];?></span></h5>
+        <br>
+    </div>
 
-    <h5 class="center-align">Participante: <?php echo $dados['nome_completo'];?> - Matricula: <?php echo $dados['matricula'];?></h5>
-    <hr>
-    
     <form method="POST" class="container">
     <input type="hidden" value="<?php echo $dados['matricula'];?>" name="matricula"/>
     <br>

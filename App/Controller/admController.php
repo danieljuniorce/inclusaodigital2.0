@@ -184,12 +184,5 @@ class admController extends controller
         $this->template('editarturmas', $dados);
     }
 
-    //teste de funções
-    public function teste()
-    {
-        $dados = array();
-
-        $this->view('teste', $dados);
-    }
 
 }

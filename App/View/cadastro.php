@@ -4,7 +4,11 @@
   <div class="row">
     <button class="right btn orange z-depth-0">Matricula Gerada: <?php echo $matricula; ?></button>
   </div>
-  <h5 class="center-align">Cadastro de novos Participantes</h5>
+  <div class="orange">
+    <br>
+    <h5 class="center-align color-white"><span class="text-white">Cadastrar novos Participantes</span></h5>
+    <br>
+  </div>
   <hr>
   <br>
   <div class="row">

@@ -1,8 +1,11 @@
         <div class="card-panel">
             <br>
-            <h4 class="center-align" style="font-weight:bolder;">ÁREA ADMINISTRATIVA</h4>
-            <hr>
-            <br>
+            <div class="orange">
+                <br>
+                <h4 class="center-align color-white"><span class="text-white">ÁREA ADMINISTRATIVA</span></h4>
+                <br>
+            </div>
+            <h4 class="center-align" style="font-weight:bolder;"></h4>
             <br>
             <div class="row">
                 <div class="col s12 m12 l6">
@@ -50,6 +53,7 @@
                 </div>
                 <div class="col s12 m12 l6">
                     <h5 class="center-align">ÁREA DE AVISO</h5>
+                    <hr>
                     <br>
                     <p class="center-align negrito">Titulo Aviso</p>
                     

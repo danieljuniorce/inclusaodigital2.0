@@ -19,6 +19,9 @@
   @media only screen and (max-width : 992px) {
     body, main, footer {
       padding-left: 10px;
+      padding-top: 10px;
     }
   }
-  
+  .color-white{
+    color: white;
+  }

@@ -4,7 +4,11 @@
 ?>
 
 <form method="POST">
-    <h4 class="center-align">Cadastramento de Turmas Nº: <?php echo $turmas; ?></h4>
+    <div class="orange">
+        <br>
+        <h4 class="center-align color-white"><span class="text-white">Cadastramento de Turmas Nº: <?php echo $turmas; ?></span></h4>
+        <br>
+    </div>
     <input type="hidden" value="<?php echo $turmas;?>" name="turma">
     <hr>
     <br>

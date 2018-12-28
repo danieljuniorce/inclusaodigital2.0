@@ -7,9 +7,10 @@ function dateHora($data)
 
 ?>
 
-<div>
-    <h4 class="center-align"> <i class="material-icons">reorder</i> Turmas</h4>
-    <hr>
+<div class="orange">
+    <br>
+    <h4 class="center-align color-white"><span class="text-white">Turmas</span></h4>
+    <br>
 </div>
 <br>
 

@@ -34,7 +34,9 @@
                 echo '<li><a href="/adm" class="waves-effect"><i class="material-icons">face</i>Participantes</a></li>';
                 echo '<li><a href="/adm/cadastrar" class="waves-effect"><i class="material-icons">add</i>Cadastrar</a></li>';
                 echo '<li><a class="dropdown-button" href="#" data-activates="turma"><i class="material-icons left">reorder</i><i class="material-icons right">arrow_drop_down</i>Turmas</a></li>';
-                echo '<li><a class="dropdown-button" href="#" data-activates="requerimentos"><i class="material-icons left">vertical_split</i><i class="material-icons right">arrow_drop_down</i>Requerimentos</a></li>';
+                //echo '<li><a class="dropdown-button" href="#" data-activates="requerimentos"><i class="material-icons left">vertical_split</i><i class="material-icons right">arrow_drop_down</i>Requerimentos</a></li>';
+                echo '<li><a href="/professor" class="hide-on-small-only"><i class="material-icons">work</i>Área do Professor</a></li>';
+                echo '<li><a class="dropdown-button hide-on-large-only show-on-small" data-activates="professor"><i class="material-icons">work</i><i class="material-icons right">arrow_drop_down</i>Área do Professor</a></li>';
                 echo '<li><div class="divider"></div></li>';
                 echo '<li><a href="/usuarios/sair" class="waves-effect"><i class="material-icons">exit_to_app</i>Sair</a></li>';
             }
@@ -46,11 +48,26 @@
         <li><a href="/adm/criarturmas"><i class="material-icons">add</i>Criar</a></li>
         <li><a href="/adm/turmas"><i class="material-icons">view_column</i>Visualizar</a></li>
     </ul>
-
+    <ul id='professor' class='dropdown-content'>
+        <li>
+            <a class=""><i class="material-icons left">how_to_reg</i>R. Partipantes</a>
+        </li>
+        <li>
+            <a class=""><i class="material-icons left">reorder</i>Turmas</a>
+        </li>
+        <li>
+            <a href="/professor/notas"><i class="material-icons left">markunread_mailbox</i>Notas</a>
+        </li>
+        <li>
+            <a><i class="material-icons left">alternate_email</i>Resultados</a>
+        </li>
+    </ul>
+    <!--
     <ul id='requerimentos' class='dropdown-content'>
         <li><a href="/adm/criarturmas"><i class="material-icons">class</i>Pendentes</a></li>
         <li><a href="/adm/turmas"><i class="material-icons">verified_user</i>Fechados</a></li>
     </ul>
+    -->
 
 
     <nav class="orange z-depth-0  hide-on-large-only">
@@ -80,7 +97,6 @@
       belowOrigin: true, // Displays dropdown below the button
       alignment: 'right', // Displays dropdown with edge aligned to the left of button
       stopPropagation: false, // Stops event propagation
-      hover: true //
     }
   );
   });    

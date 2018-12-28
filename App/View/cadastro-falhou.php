@@ -4,5 +4,5 @@
 </div>
 
 <script language="javascript">
-    setTimeout("document.location='/adm/cadastro'", 4000);
+    setTimeout("document.location='/adm/cadastrar'", 4000);
 </script>
