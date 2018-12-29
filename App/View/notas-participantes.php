@@ -29,12 +29,8 @@
         echo '<li>';
         echo '<div class="collapsible-header"><i class="material-icons">place</i>Turma: '.$turmas['turma'].' - Turno: '.$turno.' / Horário: '.$horario.'</div>';
         echo '<div class="collapsible-body">
-                <ul class="collapsible" data-collapsible="accordion">
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Matricula: 201800 - Participante: Daniel Junior de Souza Lima</div>
-                        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                    </li>
-                </ul>
+                <p class="center-align">VISUALIZAR PARTICIPANTES - ALTERAÇÕES DE NOTAS</p>
+                <p class="center-align"><a href="/professor/notasparticipantes/'.$turmas['turma'].'" class="btn orange">IR PARA NOTAS DOS PARTICIPANTES</a></p>
             </div>';
         echo '</li>';
     }
