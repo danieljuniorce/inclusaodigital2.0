@@ -81,7 +81,7 @@
         </ul>
     </nav>
     <div class="card-panel">
-        <?php  $this->LoadViewTemplate($viewName, $viewData);?>
+        <?php  $this->LoadViewTemplate($viewPaste, $viewName, $viewData);?>
     </div>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

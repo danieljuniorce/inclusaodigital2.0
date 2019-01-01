@@ -15,7 +15,7 @@ class homeController extends controller
     public function index()
     {
 
-        $this->template('home');
+        $this->template('', 'home');
     }
 
 }

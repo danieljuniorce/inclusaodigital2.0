@@ -13,10 +13,10 @@ class professorController extends controller
         }
 
     }
-    
+
     public function index()
     {
-        $this->template('area-professor');
+        $this->template('professor', 'area-professor');
     }
 
     public function notas()
@@ -25,7 +25,7 @@ class professorController extends controller
 
         $dados['turmas'] = $professor->selectedTurmas();
 
-        $this->template('notas-participantes', $dados);
+        $this->template('professor', 'notas-participantes', $dados);
     }
 
     public function notasparticipantes($turma)
@@ -35,7 +35,7 @@ class professorController extends controller
         $dados['participantes'] = $professor->selectedParticipantePorTurma($turma);
         $dados['turma'] = $turma;
 
-        $this->template('editar-notas', $dados);
+        $this->template('professor', 'editar-notas', $dados);
     }
     public function editarnotas($matricula)
     {
@@ -44,16 +44,54 @@ class professorController extends controller
         $dados['participante'] = $professor->selectedParticipante($matricula);
         $dados['notas'] = $professor->selectdNota($matricula);
 
-        if (isset($matricula) && !empty($matricula)) {
-            $moduloUm = filter_var($_POST['modulo_um']);
-            $moduloDois = filter_var($_POST['modulo_dois']);
-            $moduloTres = filter_var($_POST['modulo_tres']);
-            $moduloQuatro = filter_var($_POST['modulo_quatro']);
+        if (isset($dados['participante']) && !empty($dados['participante'])) {
+            if (isset($_POST['matricula']) && !empty($_POST['matricula'])) {
+                $moduloUm = filter_var($_POST['modulo_um']);
+                $moduloDois = filter_var($_POST['modulo_dois']);
+                $moduloTres = filter_var($_POST['modulo_tres']);
+                $moduloQuatro = filter_var($_POST['modulo_quatro']);
 
-            if (!empty($_POST['matricula']) && isset($_POST['matricula'])) {
                 $professor->updateNota($matricula, $moduloUm, $moduloDois, $moduloTres, $moduloQuatro);
+                header('Location: /adm/sucesso');
+            } else {
+
             }
         }
-        $this->template('trocas-notas-participantes', $dados);
+        $this->template('professor', 'trocas-notas-participantes', $dados);
     }
+
+    public function frequencia()
+    {
+        $professor = new professor();
+
+        $dados['turmas'] = $professor->selectedTurmas();
+
+        $this->template('professor', 'frequencia', $dados);
+    }
+    public function frequenciaturma($turma)
+    {
+        $professor = new professor();
+
+        $dados['participantes'] = $professor->selectedParticipantePorTurma($turma);
+        $participantes = $professor->selectedParticipantePorTurma($turma);
+        $dados['turma'] = $turma;
+
+        //Envio para banco de dados a frequencia individual de cada participante
+        if (isset($_POST['data_frequencia']) && !empty($_POST['data_frequencia'])) {
+            $dataFrequencia = filter_var($_POST['data_frequencia']);
+            $presenca = filter_var($_POST['presenca']);
+
+            foreach ($_POST['presenca'] as $presenca) {
+                $i++;
+                $dados['$i'] = $presenca;
+            }
+
+            $dados['aviso'] = "Entrou no if";
+        } else {
+            $dados['aviso'] = "Não entrou no if";
+        }
+
+        $this->template('professor', 'frequencia-turma', $dados);
+    }
+
 }

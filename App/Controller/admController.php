@@ -19,7 +19,7 @@ class admController extends controller
     {
         $dados = array();
 
-        $this->template("adm-home", $dados);
+        $this->template('adm', "adm-home", $dados);
     }
 
     public function cadastrar()
@@ -48,17 +48,17 @@ class admController extends controller
             $dados['aviso'] = "Deu Ruim doido";
         }
 
-        $this->template("cadastro", $dados);
+        $this->template('adm', "cadastro", $dados);
     }
 
     //Vizualização sucesso e falhou no cadastramento.
     public function sucesso()
     {
-        $this->template('cadastro-sucesso');
+        $this->template('adm', 'cadastro-sucesso');
     }
     public function falhou()
     {
-        $this->template('cadastro-falhou');
+        $this->template('adm', 'cadastro-falhou');
     }
 
     public function estados($estado)
@@ -81,7 +81,7 @@ class admController extends controller
             $dados['dados'] = $adm->estado($estado);
         }
 
-        $this->template('participantes-ativos', $dados);
+        $this->template('adm', 'participantes-ativos', $dados);
     }
 
     public function editar($matricula)
@@ -120,7 +120,7 @@ class admController extends controller
             $dados['dados'] = "Nenhum Resultado encontrado";
         }
 
-        $this->template('participantes-perfil', $dados);
+        $this->template('adm', 'participantes-perfil', $dados);
     }
 
     public function criarturmas()
@@ -142,7 +142,7 @@ class admController extends controller
             header('Location: /adm/sucesso');
         }
 
-        $this->template('criarturmas', $dados);
+        $this->template('adm', 'criarturmas', $dados);
     }
     public function turmas()
     {
@@ -155,7 +155,7 @@ class admController extends controller
             $dados['turmas'];
         }
 
-        $this->template('turmas', $dados);
+        $this->template('adm', 'turmas', $dados);
     }
 
     public function editarturma($turma)
@@ -181,7 +181,7 @@ class admController extends controller
         } else {
             header('Location: /adm/falhou');
         }
-        $this->template('editarturmas', $dados);
+        $this->template('adm', 'editarturmas', $dados);
     }
 
 

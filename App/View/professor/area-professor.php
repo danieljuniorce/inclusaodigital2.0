@@ -1,7 +1,7 @@
 <nav class="hide-on-small-only orange">
     <ul>
         <li>
-            <a class="right"><i class="material-icons left">how_to_reg</i>RELAÇÕES DE PARTICIPANTES</a>
+            <a class="right" href="/professor/frequencia"><i class="material-icons left">how_to_reg</i>FREQUÊNCIA</a>
         </li>
         <li>
             <a class="right"><i class="material-icons left">reorder</i>TURMAS</a>

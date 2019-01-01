@@ -45,8 +45,22 @@ class professor extends model
             return $sql->fetch();
         }
     }
-    public function updateNota($matricula, $moduloUm, $moduloDois, $moduloTres, $moduloQuatro) 
+    public function updateNota($matricula, $moduloUm, $moduloDois, $moduloTres, $moduloQuatro)
     {
-        
+        $sql = "SELECT * FROM notas WHERE matricula_participante = '$matricula'";
+        $sql = $this->pdo->query($sql);
+
+        if ($sql->rowCount() > 0) {
+
+            $dados = $sql->fetch();
+
+            $moduloUm = isset($moduloUm) && !empty($moduloUm) ? $moduloUm : $dados['modulo_um'];
+            $moduloDois = isset($moduloDois) && !empty($moduloDois) ? $moduloDois : $dados['modulo_dois'];
+            $moduloTres = isset($moduloTres) && !empty($moduloTres) ? $moduloTres : $dados['modulo_tres'];
+            $moduloQuatro = isset($moduloQuatro) && !empty($moduloQuatro) ? $moduloQuatro : $dados['modulo_quatro'];
+
+            $sqlAtt = "UPDATE notas SET modulo_um = '$moduloUm', modulo_dois = '$moduloDois', modulo_tres = '$moduloTres', modulo_quatro = '$moduloQuatro' WHERE matricula_participante = '$matricula'";
+            $this->pdo->query($sqlAtt);
+        }
     }
 }
