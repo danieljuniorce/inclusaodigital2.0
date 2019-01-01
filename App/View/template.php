@@ -23,7 +23,6 @@
         </div>
         </li>
         <?php
-
             if ($_SESSION['acesso'] == 'user') {
                 echo '<li><a href="" class="waves-effect"><i class="material-icons">book</i>Seu Curso</a></li>';
                 echo '<li><a href="" class="waves-effect"><i class="material-icons">book</i>Acâdemico</a></li>';
@@ -50,10 +49,10 @@
     </ul>
     <ul id='professor' class='dropdown-content'>
         <li>
-            <a class=""><i class="material-icons left">how_to_reg</i>R. Partipantes</a>
+            <a class="/professor/frequencia"><i class="material-icons left">how_to_reg</i>FREQUENCIA</a>
         </li>
         <li>
-            <a class=""><i class="material-icons left">reorder</i>Turmas</a>
+            <a href="/professor/questoes"><i class="material-icons left">book</i>BANCO DE QUESTÕES</a>
         </li>
         <li>
             <a href="/professor/notas"><i class="material-icons left">markunread_mailbox</i>Notas</a>

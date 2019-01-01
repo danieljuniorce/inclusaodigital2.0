@@ -63,4 +63,10 @@ class professor extends model
             $this->pdo->query($sqlAtt);
         }
     }
+
+    public function criarquestao($modulo, $questao, $primeiraAlt, $segundaAlt, $terceiraAlt, $quartaAlt)
+    {
+        $sql = "INSERT INTO banco_de_questao SET modulo = '$modulo', questao = '$questao', primeira_alt = '$primeiraAlt', segunda_alt = '$segundaAlt', terceira_alt = '$terceiraAlt', quarta_alt = '$quartaAlt'";
+        $sql = $this->pdo->query($sql);
+    }
 }

@@ -3,6 +3,7 @@ class professorController extends controller
 {
     public function __construct()
     {
+        ini_set('default_charset', 'UTF-8');
         session_start();
         if (isset($_SESSION['acesso']) && $_SESSION['acesso'] && $_SESSION['acesso'] == 'adm') {
 
@@ -94,4 +95,28 @@ class professorController extends controller
         $this->template('professor', 'frequencia-turma', $dados);
     }
 
+
+    public function questoes()
+    {
+        $this->template('professor', 'banco-de-questoes');
+    }
+    
+    public function criarquestoes()
+    {
+        $professor = new professor();
+        if (isset($_POST['questao']) && !empty($_POST['questao'])) {
+            $modulo = filter_var(utf8_decode($_POST['modulo']));
+            $questao = filter_var(utf8_decode($_POST['questao']));
+            $primeriaAlt = filter_var(utf8_decode($_POST['primeira_alt']));
+            $segundaAlt = filter_var(utf8_decode($_POST['segunda_alt']));
+            $terceiraAlt = filter_var(utf8_decode($_POST['terceira_alt']));
+            $quartaAlt = filter_var(utf8_decode($_POST['quarta_alt']));
+
+            $professor->criarquestao($modulo, $questao, $primeriaAlt, $segundaAlt, $terceiraAlt, $quartaAlt);
+
+            header('Location: /adm/sucesso');
+        }
+        $this->template('professor', 'criar-questoes');
+    }
+    
 }
