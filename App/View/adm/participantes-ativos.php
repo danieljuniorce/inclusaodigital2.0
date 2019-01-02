@@ -20,15 +20,6 @@
                             </div>
                             <div class="row">
                                 <div class="col s12 m6 l6">
-                                    <p class="">Curso: '.$participantes['tipo_curso'].'</p>
-                                </div>
-                                <div class="col s12 m6 l6">
-                                    <p class="">Turno: '.$participantes['turno'].'</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s12 m6 l6">
-                                    <p class="">Horário: '.$participantes['horario'].'</p>
                                 </div>
                                 <div class="col s12 m6 l6">
                                     <p class="">Celular: '.$participantes['celular'].'</p>

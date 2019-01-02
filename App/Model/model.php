@@ -14,7 +14,7 @@ class model
     {
         global $config;
         try {
-            $this->pdo = new PDO("mysql:host=localhost;port=3306;dbname=inclusao_digital", 'root', '');
+            $this->pdo = new PDO("mysql:host=localhost;port=3306;dbname=inclusaodigital", 'root', '');
             //echo 'Conexão com banco de dados feita com sucesso';
         } catch (PDOException $e) {
             echo 'Falhou a conexão com banco de dados (Error: ' . $e->getMessage() . ')';

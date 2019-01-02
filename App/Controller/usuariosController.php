@@ -14,7 +14,7 @@ class usuariosController extends controller
 
     public function login()
     {
-        $this->view('login');
+        $this->view('', 'login');
     }
     public function carregar()
     {

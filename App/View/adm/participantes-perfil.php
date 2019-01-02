@@ -112,86 +112,34 @@
             </div>
             <div class="col s12 m6 l6">
                 <div class="input-field s12">
-                    <i class="material-icons prefix">update</i>
-                    <select name="turno" id="turno">
-                        <?php 
-                            if ($dados['turno'] == 'manha'){
-                                echo '<option value="manha" selected>Manhã</option>';
-                                echo '<option value="tarde" >Tarde</option>';
+                    <select name="turma" id="turma">
+                    <?php 
+                        foreach ($turmas as $turma) {
+
+                            if ($turma['turno'] == 'manha') {
+                                $turno = 'Manhã';
+                            } else if ($turma['turno'] == 'excel') {
+                                $turno = 'Tarde';
+                            }
+
+                            if ($turma['horario'] == 'primeiro_horario') {
+                                $horario = '08:00 as 09:30';
+                            } else if ($turma['horario'] == 'segunda_horario') {
+                                $horario = '09:30 as 11:00';
+                            } else if ($turma['horario'] == 'terceiro_horario') {
+                                $horario = '13:00 as 14:30';
+                            } else if ($turma['horario'] == 'quarto_horario') {
+                                $horario = '14:30 as 16:00';
                             } else {
-                                echo '<option value="tarde" selected>Tarde</option>';
-                                echo '<option value="manha" >Manhã</option>';
+                                $horario = 'Sem Horário';
                             }
-                        ?>
+
+                            echo '<option value="" disabled selected>Selecione a Turma</option>';
+                            echo '<option value="'.$turma['turma'].'">Turma: '.$turma['turma'].' / Turno: '.$turno.', Horário: '.$horario.'</option>';
+                        }
+                    ?>
                     </select>
-                    <label for="turno">Turno</label>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m6 l6">
-                <div class="input-field s12">
-                    <i class="material-icons prefix">hourglass_empty</i>
-                    <select name="horario" id="horario">
-                        <?php 
-                            if($dados['horario'] == 'primeiro_horario'){
-                                echo '<option value="primeiro_horario" selected>08:00 as 09:30</option>';
-                                echo '<option value="segundo_horario">09:30 as 11:00</option>';
-                                echo '<option value="terceiro_horario">13:00 as 14:30</option>';
-                                echo '<option value="quarto_horario">14:30 as 16:00</option>';
-                            }else if($dados['horario'] == 'segundo_horario'){
-                                echo '<option value="primeiro_horario">08:00 as 09:30</option>';
-                                echo '<option value="segundo_horario" selected>09:30 as 11:00</option>';
-                                echo '<option value="terceiro_horario">13:00 as 14:30</option>';
-                                echo '<option value="quarto_horario">14:30 as 16:00</option>';
-                            }else if($dados['horario'] == 'terceiro_horario'){
-                                echo '<option value="primeiro_horario">08:00 as 09:30</option>';
-                                echo '<option value="segundo_horario">09:30 as 11:00</option>';
-                                echo '<option value="terceiro_horario" selected>13:00 as 14:30</option>';
-                                echo '<option value="quarto_horario">14:30 as 16:00</option>';
-                            }else if($dados['horario'] == 'quarta_horario'){
-                                echo '<option value="primeiro_horario">08:00 as 09:30</option>';
-                                echo '<option value="segundo_horario">09:30 as 11:00</option>';
-                                echo '<option value="terceiro_horario">13:00 as 14:30</option>';
-                                echo '<option value="quarto_horario" selected>14:30 as 16:00</option>';
-                            }else{
-                                echo '<option value="" disabled selected>Não tem horário Escolhido</option>';
-                                echo '<option value="primeiro_horario">08:00 as 09:30</option>';
-                                echo '<option value="segundo_horario">09:30 as 11:00</option>';
-                                echo '<option value="terceiro_horario">13:00 as 14:30</option>';
-                                echo '<option value="quarto_horario">14:30 as 16:00</option>';
-                            }
-                        ?>
-                    </select>
-                    <label for="horario">Horário</label>
-                </div>
-            </div>
-            <div class="col s12 m6 l6">
-                <div class="input-field s12">
-                    <i class="material-icons prefix">book</i>
-                    <select name="curso" id="curso">
-                        <?php
-                            if($dados['tipo_curso'] == 'informatica_basica'){
-                                echo '<option value="informatica_basica" selected>Informática Básica</option>';
-                                echo '<option value="excel_avancado">Excel Avançado</option>';
-                                echo '<option value="excel_intensivo">Excel Intensivo</option>';
-                            }else if($dados['tipo_curso'] == 'excel_avancado'){
-                                echo '<option value="informatica_basica" >Informática Básica</option>';
-                                echo '<option value="excel_avancado" selected>Excel Avançado</option>';
-                                echo '<option value="excel_intensivo">Excel Intensivo</option>';
-                            }else if($dados['tipo_curso'] == 'excel_intensivoo'){
-                                echo '<option value="informatica_basica" >Informática Básica</option>';
-                                echo '<option value="excel_avancado">Excel Avançado</option>';
-                                echo '<option value="excel_intensivo" selected>Excel Intensivo</option>';
-                            }else{
-                                echo '<option value="" selected disabled>Selecione o Curso</option>';
-                                echo '<option value="informatica_basica">Informática Básica</option>';
-                                echo '<option value="excel_avancado">Excel Avançado</option>';
-                                echo '<option value="excel_intensivo">Excel Intensivo</option>';
-                            }
-                        ?>
-                    </select>
-                    <label for="telefone">Curso</label>
+                    <label for="turma">Turmas Disponíveis</label>
                 </div>
             </div>
         </div>
@@ -218,37 +166,6 @@
                 </div>
             </div>
             <div class="col s12 m6 l6">
-                <div class="input-field">
-                    <?php
-                        if ($dados['turma'] == '') {
-                            echo '<select name="turma" id="turmas">';
-                                echo '<option value="" disabled selected>Escolha a turma</option>';
-                            foreach ($turmas as $turmas) {
-                                if ($turmas['curso'] == 'informatica_basica')
-                                {
-                                    $turma = 'Informática Básica';
-                                } else if($turmas['curso'] == 'excel_avancado') {
-                                    $turma = 'Excel Avançado';
-                                } else {
-                                    $turma = 'Excel Intensivo';
-                                }
-
-                                if ($turmas['turno'] == 'tarde') {
-                                    $turno = 'Manhã';
-                                } else {
-                                    $turno = 'Tarde';
-                                }
-                                echo '<option value="'.$turmas['turma'].'">Nº: '.$turmas['turma'].' Curso: '.$turma.' - '.$turno.'</option>';
-                            }
-                            
-                            echo '</select>';
-                            echo '<label for="turmas">Turmas</label>';
-                        } else {
-                            echo '<input type="number" id="turma" name="turma" placeholder="'.$dados['turma'].'";>';
-                            echo '<label for="turma">Turma</label>';
-                        }
-                    ?>    
-                </div>
             </div>
         </div>
         <div class="row">

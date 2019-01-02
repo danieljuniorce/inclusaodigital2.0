@@ -4,6 +4,7 @@ class admController extends controller
 {
     public function __construct()
     {
+        
         session_start();
         if (isset($_SESSION['acesso']) && $_SESSION['acesso'] && $_SESSION['acesso'] == 'adm') {
 
@@ -12,6 +13,7 @@ class admController extends controller
         } else {
             header('Location: /usuarios/login');
         }
+        
 
     }
 
@@ -43,7 +45,7 @@ class admController extends controller
             $email = filter_var($_POST['email']);
             $sexo = filter_var($_POST['sexo']);
 
-            $adm->novoParticipante($nomeCompleto, $dataNascimento, $tipoCurso, $estadoParticipante, $rg, $cpf, $matricula, $turno, $horario, $celular, $telefone, $email, $sexo);
+            $adm->novoParticipante($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $matricula, $celular, $telefone, $email, $sexo);
         } else {
             $dados['aviso'] = "Deu Ruim doido";
         }
@@ -112,7 +114,7 @@ class admController extends controller
                 $sexo = filter_var($_POST['sexo']);
                 $turma = filter_var($_POST['turma']);
 
-                $adm->atualizarDados($nomeCompleto, $dataNascimento, $tipoCurso, $estadoParticipante, $rg, $cpf, $turno, $horario, $celular, $telefone, $email, $senha, $matricula, $sexo, $turma);
+                $adm->atualizarDados($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $celular, $telefone, $email, $senha, $matricula, $sexo, $turma);
 
                 header('Location: /adm/sucesso');
             }

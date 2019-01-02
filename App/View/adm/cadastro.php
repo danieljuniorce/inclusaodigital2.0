@@ -21,16 +21,6 @@
         <!-- Curso e Estado do Participante -->
         <div class="row">
           <div class="col s12 m6 l6">
-              <div class="input-field">
-                <i class="material-icons prefix">book</i>
-                <select name="tipo_curso" id="tipo_curso" required>
-                  <option value="sem_curso" disabled selected>Selecione o Tipo do Curso</option>
-                  <option value="informatica_basica">Informática Básica</option>
-                  <option value="excel_avancado">Excel Avançado</option>
-                  <option value="excel_intensivo">Excel Intensivo</option>
-                </select>
-                <label for="tipo_curso">Tipo de Curso</label>
-              </div>
           </div>
           <div class="col s12 m6 l6">
           <div class="input-field">
@@ -59,7 +49,7 @@
           <div class="col s12 m6 l6">
             <div class="input-field s6 offset-2">
                 <i class="material-icons prefix">calendar_today</i>
-                <input type="text" id="data_nascimento" name="data_nascimento" required>
+                <input type="date" id="data_nascimento" name="data_nascimento" required>
                 <label for="data_nascimento">Data de Nascimento</label>
               </div>
           </div>
@@ -81,33 +71,6 @@
               </div>
           </div>
         </div>
-        <!-- Horário Disponiveis e Turno -->
-        <div class="row">
-          <div class="col s12 m6 l6">
-              <div class="input-field">
-                  <i class="material-icons prefix">update</i>
-                <select name="turno" id="turno">
-                  <option value="nao_especificado" disabled selected>Selecione o Turno</option>
-                  <option value="manha">Manhã</option>
-                  <option value="tarde">Tarde</option>
-                </select>
-                <label for="turno">Turno</label>
-              </div>
-          </div>
-          <div class="col s12 m6 l6">
-            <div class="input-field">
-                <i class="material-icons prefix">hourglass_empty</i>
-              <select name="horario" id="horario">
-                  <option value="nao_especificado" disabled selected>Selecione o Horário</option>
-                  <option value="primeiro_horario">08:00 as 09:30</option>
-                  <option value="segundo_horario">09:30 as 11:00</option>
-                  <option value="terceiro_horario">13:00 as 14:30</option>
-                  <option value="terceiro_horario">14:30 as 16:00</option>
-                </select>
-                <label for="horario">Horario</label>
-              </div>
-            </div>
-          </div>
         <!--Telefone e Celular -->
          <div class="row">
             <div class="col s12 m6 l6">

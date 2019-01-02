@@ -113,7 +113,6 @@
             </div>
         </div>
         <div class="col s12 m6 l6">
-            <div class="input-field s12">
         </div>
     </div>
     <div class="row container">
