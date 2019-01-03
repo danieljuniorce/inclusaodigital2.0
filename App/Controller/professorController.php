@@ -61,41 +61,6 @@ class professorController extends controller
         $this->template('professor', 'trocas-notas-participantes', $dados);
     }
 
-    public function frequencia()
-    {
-        $professor = new professor();
-
-        $dados['turmas'] = $professor->selectedTurmas();
-
-        $this->template('professor', 'frequencia', $dados);
-    }
-    public function frequenciaturma($turma)
-    {
-        $professor = new professor();
-
-        $dados['participantes'] = $professor->selectedParticipantePorTurma($turma);
-        $participantes = $professor->selectedParticipantePorTurma($turma);
-        $dados['turma'] = $turma;
-
-        //Envio para banco de dados a frequencia individual de cada participante
-        if (isset($_POST['data_frequencia']) && !empty($_POST['data_frequencia'])) {
-            $dataFrequencia = filter_var($_POST['data_frequencia']);
-            $presenca = filter_var($_POST['presenca']);
-
-            foreach ($_POST['presenca'] as $presenca) {
-                $i++;
-                $dados['$i'] = $presenca;
-            }
-
-            $dados['aviso'] = "Entrou no if";
-        } else {
-            $dados['aviso'] = "Não entrou no if";
-        }
-
-        $this->template('professor', 'frequencia-turma', $dados);
-    }
-
-
     public function questoes()
     {
         $this->template('professor', 'banco-de-questoes');
@@ -118,5 +83,34 @@ class professorController extends controller
         }
         $this->template('professor', 'criar-questoes');
     }
-    
+
+    public function frequencia()
+    {
+        $professor = new professor();
+
+        $dados['turmas'] = $professor->selectedTurmas();
+
+        $this->template('professor', 'frequencia', $dados);
+    }
+    public function frequenciaturma($turma)
+    {
+        $professor = new professor();
+
+        $dados['participantes'] = $professor->selectedParticipantePorTurma($turma);
+        $participantes = $professor->selectedParticipantePorTurma($turma);
+        $dados['turma'] = $turma;
+
+        //Envio para banco de dados a frequencia individual de cada participante
+        if (isset($_POST['data_frequencia']) && !empty($_POST['data_frequencia'])) {
+
+            $frequencia = $_POST['frequencia'];
+
+            
+
+        }
+
+
+        $this->template('professor', 'frequencia-turma', $dados);
+    }
+
 }

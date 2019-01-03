@@ -69,4 +69,40 @@ class professor extends model
         $sql = "INSERT INTO banco_de_questao SET modulo = '$modulo', questao = '$questao', primeira_alt = '$primeiraAlt', segunda_alt = '$segundaAlt', terceira_alt = '$terceiraAlt', quarta_alt = '$quartaAlt'";
         $sql = $this->pdo->query($sql);
     }
+
+    public function frequencia($matricula, $dataFrequencia, $frequencia)
+    {
+
+        if ($frequencia == 'falta') {
+
+            $sqlSelected = "SELECT * FROM frequencias WHERE matricula = '$matricula'";
+            $sqlSelected = $this->pdo->query($sqlSelected);
+
+            if ($sqlSelected->rowCount() > 0) {
+                $sqlUpdate = "UPDATE frequencias SET falta = '$frequencia', data_frequencia = '$dataFrequencia' WHERE matricula = '$matricula'";
+            } else {
+                $sqlInsert = "INSERT INTO frequencias SET matricula = '$matricula'";
+                $this->pdo->query($sqlInsert);
+
+                $sqlSelected = "SELECT * FROM frequencias WHERE matricula = '$matricula'";
+                $sqlSelected = $this->pdo->query($sqlSelected);
+            }
+
+        } else if ($frequencia == 'presenca') {
+            
+            $sqlSelected = "SELECT * FROM frequencias WHERE matricula = '$matricula'";
+            $sqlSelected = $this->pdo->query($sqlSelected);
+
+            if ($sqlSelected->rowCount() > 0) {
+                $sqlUpdate = "UPDATE frequencias SET presenca = '$frequencia', data_frequencia = '$dataFrequencia' WHERE matricula = '$matricula'";
+            } else {
+                $sqlInsert = "INSERT INTO frequencias SET matricula = '$matricula'";
+                $this->pdo->query($sqlInsert);
+
+                $sqlSelected = "SELECT * FROM frequencias WHERE matricula = '$matricula'";
+                $sqlSelected = $this->pdo->query($sqlSelected);
+            }
+        }
+
+    }
 }

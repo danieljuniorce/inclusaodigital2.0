@@ -133,13 +133,18 @@
                             } else {
                                 $horario = 'Sem Horário';
                             }
+                            if ($turma['turma'] != ''){
+                                echo '<option value="" disabled selected>Selecione a Turma</option>';
+                                echo '<option value="'.$turma['turma'].'">Turma: '.$turma['turma'].' / Turno: '.$turno.', Horário: '.$horario.'</option>';
 
-                            echo '<option value="" disabled selected>Selecione a Turma</option>';
-                            echo '<option value="'.$turma['turma'].'">Turma: '.$turma['turma'].' / Turno: '.$turno.', Horário: '.$horario.'</option>';
+                            } else {
+                                echo '<option value="'.$turma['turma'].'">Turma: '.$turma['turma'].' / Turno: '.$turno.', Horário: '.$horario.'</option>';
+                            }
+                            
                         }
                     ?>
                     </select>
-                    <label for="turma">Turmas Disponíveis</label>
+                    <label for="turma">Turma</label>
                 </div>
             </div>
         </div>
