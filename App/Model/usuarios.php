@@ -43,4 +43,14 @@ class usuarios extends model
             return false;
         }
     }
+
+    public function frequencia() {
+        $sql = "SELECT * FROM frequencias WHERE matricula = :matricula";
+        $sql = $this->pdo->prepare($sql);
+
+        $sql->bindParam(':matricula', $_SESSION['matricula']);
+        $sql->execute();
+
+        return $sql->fetch();
+    }
 }

@@ -5,6 +5,10 @@ class usuariosController extends controller
     public function __construct()
     {
         session_start();
+        if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
+        } else {
+            header('Location: /usuarios/login');
+        }
     }
 
     public function index()
@@ -14,22 +18,19 @@ class usuariosController extends controller
 
     public function login()
     {
-        $this->view('', 'login');
-    }
-    public function carregar()
-    {
         $u = new usuarios();
         if (!empty($_POST['matricula']) && !empty($_POST['senha'])) {
             $matricula = filter_var($_POST['matricula']);
-
             $g = new geral();
             $senha = filter_var($g->hashIntegrate($_POST['senha']));
-
+                
             $u->entrar($matricula, $senha);
             header('Location: /home');
         } else {
-            header('Location: /teste');
+
         }
+
+        $this->view('', 'login');
     }
 
     public function sair()
@@ -47,6 +48,16 @@ class usuariosController extends controller
 
     public function frequencia()
     {
-        $this->template('usuarios', 'frequencia');
+        $u = new usuarios();
+        $frequencia = $u->frequencia();
+
+        $diasCursos = 25;
+        $dados['frequencia'] = (($diasCursos- $frequencia['falta'] ) / $diasCursos) * 100;
+
+        $this->template('usuarios', 'frequencia', $dados);
+    }
+    public function notas()
+    {
+        $this->template('usuarios', 'notas');
     }
 }

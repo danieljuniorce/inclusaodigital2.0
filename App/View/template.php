@@ -37,7 +37,7 @@
             } else {
                 echo '<li><a href="/usuarios/curso" class="waves-effect"><i class="material-icons">book</i>Seu Curso</a></li>';
                 echo '<li><a href="/usuarios/frequencia"><i class="material-icons">calendar_today</i>Frequência</a></li>';
-                echo '<li><a href="/adm/turmas"><i class="material-icons">verified_user</i>Notas</a></li>';
+                echo '<li><a href="/usuarios/notas"><i class="material-icons">verified_user</i>Notas</a></li>';
 
                 echo '<li><div class="divider"></div></li>';
                 echo '<li><a href="/usuarios/sair" class="waves-effect"><i class="material-icons">arrow_drop_down</i>Sair</a></li>';

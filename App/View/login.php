@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -19,7 +20,7 @@
         <h5 class="center-align">SIA - INCLUSÃO DIGITAL</h5>
         <br>
         <div class="row">
-        <form action="/usuarios/carregar" method="POST" class="col s12">
+        <form method="POST" class="col s12">
           <div class="input-field s6">
             <i class="material-icons prefix">email</i>
             <input type="text" id="matricula" name="matricula" class="validate">
