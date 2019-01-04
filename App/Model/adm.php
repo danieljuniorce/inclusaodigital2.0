@@ -31,8 +31,13 @@ class adm extends model
 
             $sql->execute();
 
+            //Inserção na tabela de Notas;
             $sqlNotas = "INSERT INTO notas SET matricula_participante = '$matricula'";
             $sqlNotas = $this->pdo->query($sqlNotas);
+
+            //Inserção na tabela de Frequencia
+            $sqlInsert = "INSERT INTO frequencias SET matricula = '$matricula'";
+            $this->pdo->query($sqlInsert);
 
             //Verificando se foi inserido o participante;
             $sql = "SELECT * FROM participantes WHERE matricula = '$matricula' AND data_nascimento = '$dataNascimento'";

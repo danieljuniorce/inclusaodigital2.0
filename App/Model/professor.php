@@ -72,37 +72,47 @@ class professor extends model
 
     public function frequencia($matricula, $dataFrequencia, $frequencia)
     {
+        $sqlSelected = "SELECT * FROM frequencias WHERE matricula = '$matricula'";
+        $sqlSelected = $this->pdo->query($sqlSelected);
 
-        if ($frequencia == 'falta') {
+        if ($sqlSelected->rowCount() > 0) {
 
-            $sqlSelected = "SELECT * FROM frequencias WHERE matricula = '$matricula'";
-            $sqlSelected = $this->pdo->query($sqlSelected);
+            $user = $sqlSelected->fetch();
 
-            if ($sqlSelected->rowCount() > 0) {
-                $sqlUpdate = "UPDATE frequencias SET falta = '$frequencia', data_frequencia = '$dataFrequencia' WHERE matricula = '$matricula'";
-            } else {
-                $sqlInsert = "INSERT INTO frequencias SET matricula = '$matricula'";
-                $this->pdo->query($sqlInsert);
+            if ($frequencia == 'falta') {
 
-                $sqlSelected = "SELECT * FROM frequencias WHERE matricula = '$matricula'";
-                $sqlSelected = $this->pdo->query($sqlSelected);
+                //Atualizando Falta;
+                $falta = 1 + $user['falta'];
+                $dataFrequencia = $user['data_frequencia'].$dataFrequencia." ($frequencia)</br>";
+    
+                $sqlUpdateFalta = "UPDATE frequencias SET falta = :falta, data_frequencia = :dataFrequencia WHERE matricula = :matricula";
+                $sqlUpdateFalta = $this->pdo->prepare($sqlUpdateFalta);
+    
+                $sqlUpdateFalta->bindParam(':falta', $falta);
+                $sqlUpdateFalta->bindParam(':dataFrequencia', $dataFrequencia);
+                $sqlUpdateFalta->bindParam(':matricula', $matricula);
+                $sqlUpdateFalta->execute();
+    
+            } else if ($frequencia == 'presenca') {
+    
+                //Atualizando Presenca;
+                $presenca = 1 + $user['presenca'];
+                $dataFrequencia = $user['data_frequencia'].$dataFrequencia." ($frequencia)</br>";
+    
+                $sqlUpdateFalta = "UPDATE frequencias SET presenca = :presenca, data_frequencia = :dataFrequencia WHERE matricula = :matricula";
+                $sqlUpdateFalta = $this->pdo->prepare($sqlUpdateFalta);
+    
+                $sqlUpdateFalta->bindParam(':presenca', $presenca);
+                $sqlUpdateFalta->bindParam(':dataFrequencia', $dataFrequencia);
+                $sqlUpdateFalta->bindParam(':matricula', $matricula);
+                $sqlUpdateFalta->execute();
             }
 
-        } else if ($frequencia == 'presenca') {
-            
-            $sqlSelected = "SELECT * FROM frequencias WHERE matricula = '$matricula'";
-            $sqlSelected = $this->pdo->query($sqlSelected);
+        } else {
 
-            if ($sqlSelected->rowCount() > 0) {
-                $sqlUpdate = "UPDATE frequencias SET presenca = '$frequencia', data_frequencia = '$dataFrequencia' WHERE matricula = '$matricula'";
-            } else {
-                $sqlInsert = "INSERT INTO frequencias SET matricula = '$matricula'";
-                $this->pdo->query($sqlInsert);
-
-                $sqlSelected = "SELECT * FROM frequencias WHERE matricula = '$matricula'";
-                $sqlSelected = $this->pdo->query($sqlSelected);
-            }
         }
+
+
 
     }
 }

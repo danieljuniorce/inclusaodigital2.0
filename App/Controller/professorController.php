@@ -102,11 +102,14 @@ class professorController extends controller
 
         //Envio para banco de dados a frequencia individual de cada participante
         if (isset($_POST['data_frequencia']) && !empty($_POST['data_frequencia'])) {
-
+            $dataFrequencia = filter_var($_POST['data_frequencia']);
             $frequencia = $_POST['frequencia'];
 
-            
+            foreach ($participantes as $participante) {
+                $professor->frequencia($participante['matricula'], $dataFrequencia, $frequencia[$participante['id']]);
+            }
 
+            header('Location: /adm/sucesso');
         }
 
 

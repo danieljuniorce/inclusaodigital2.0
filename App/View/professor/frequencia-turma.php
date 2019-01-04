@@ -39,5 +39,3 @@
     <br>
     </div>
 </form>
-<?php 
-   echo $frequencia[5];
