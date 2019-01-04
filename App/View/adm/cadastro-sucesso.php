@@ -1,5 +1,5 @@
 <div class="card-panel">
-    <h4 class="center-align">Participante cadastrado com sucesso.</h4>
+    <h4 class="center-align"><?php echo $_SESSION['aviso_sucesso'];?></h4>
     <a class="btn right orange">AGUARDE....</a>
 </div>
 

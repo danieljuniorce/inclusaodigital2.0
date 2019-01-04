@@ -43,9 +43,11 @@ class adm extends model
             $sql = "SELECT * FROM participantes WHERE matricula = '$matricula' AND data_nascimento = '$dataNascimento'";
             $sql = $this->pdo->query($sql);
             if ($sql->rowCount() > 0) {
+                $_SESSION['aviso_sucesso'] = "Conta de Participante, criada com sucesso.";
                 header('Location: /adm/sucesso');
                 return true;
             } else {
+                
                 header('Location: /adm/falhou');
                 return false;
             }
@@ -135,7 +137,9 @@ class adm extends model
                 $sqlAtt->bindParam(':matricula', $matricula);
                 $sqlAtt->execute();
 
+                $_SESSION['aviso_sucesso'] = "Dados Atualizado com sucesso.";
                 return $dados;
+
             } else {
                 $dados = "Dados não encontrado";
             }
@@ -198,6 +202,7 @@ class adm extends model
                 $sqlAtt = "UPDATE turmas SET inicio = '$dataInicio', final = '$dataFinal', curso = '$curso', turno = '$turno', horario = '$horario' WHERE turma = '$turma'";
                 $sqlAtt = $this->pdo->query($sqlAtt);
 
+                $_SESSION['aviso_sucesso'] = "Turma Atualizada com Sucesso";
         } else {
             $dados = "Turma não Encontrada";
         }

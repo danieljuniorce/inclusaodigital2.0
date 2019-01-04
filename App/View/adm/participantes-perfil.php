@@ -86,7 +86,7 @@
                             echo '<option value="pre_inscrito">Pre-Inscrito</option>';
                             echo '<option value="concludente">Concludente</option>';
                             echo '<option value="nao_concludente">Não Concludente</option>';
-                        } else if ($dados['estado_participante'] == 'pre_inscrito') {
+                        } else if ($dados['estado_participante'] == 'pre_inscricao') {
                             echo '<option value="ativo">Ativo</option>';
                             echo '<option value="inativo">Inativo</option>';
                             echo '<option value="pre_inscrito" selected>Pre-Inscrito</option>';
@@ -103,7 +103,7 @@
                             echo '<option value="inativo">Inativo</option>';
                             echo '<option value="pre_inscrito">Pre-Inscrito</option>';
                             echo '<option value="concludente">Concludente</option>';
-                            echo '<option value="nao_concludente" selected>Não Concludente</option>';
+                            echo '<option value="nao_concludente">Não Concludente</option>';
                         }
                     ?>
                     </select>
@@ -113,7 +113,8 @@
             <div class="col s12 m6 l6">
                 <div class="input-field s12">
                     <select name="turma" id="turma">
-                    <?php 
+                    <?php
+                    echo '<option value="" disabled selected>Selecione a Turma</option>';
                         foreach ($turmas as $turma) {
 
                             if ($turma['turno'] == 'manha') {
@@ -133,8 +134,9 @@
                             } else {
                                 $horario = 'Sem Horário';
                             }
+                            
                             if ($turma['turma'] != ''){
-                                echo '<option value="" disabled selected>Selecione a Turma</option>';
+                                
                                 echo '<option value="'.$turma['turma'].'">Turma: '.$turma['turma'].' / Turno: '.$turno.', Horário: '.$horario.'</option>';
 
                             } else {

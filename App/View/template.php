@@ -23,13 +23,7 @@
         </div>
         </li>
         <?php
-            if ($_SESSION['acesso'] == 'user') {
-                echo '<li><a href="" class="waves-effect"><i class="material-icons">book</i>Seu Curso</a></li>';
-                echo '<li><a href="" class="waves-effect"><i class="material-icons">book</i>Acâdemico</a></li>';
-
-                echo '<li><div class="divider"></div></li>';
-                echo '<li><a href="/usuarios/sair" class="waves-effect"><i class="material-icons">book</i>Sair</a></li>';
-            } else {
+            if ($_SESSION['acesso'] == 'adm') {
                 echo '<li><a href="/adm" class="waves-effect"><i class="material-icons">face</i>Participantes</a></li>';
                 echo '<li><a href="/adm/cadastrar" class="waves-effect"><i class="material-icons">add</i>Cadastrar</a></li>';
                 echo '<li><a class="dropdown-button" href="#" data-activates="turma"><i class="material-icons left">reorder</i><i class="material-icons right">arrow_drop_down</i>Turmas</a></li>';
@@ -38,6 +32,15 @@
                 echo '<li><a class="dropdown-button hide-on-large-only show-on-small" data-activates="professor"><i class="material-icons">work</i><i class="material-icons right">arrow_drop_down</i>Área do Professor</a></li>';
                 echo '<li><div class="divider"></div></li>';
                 echo '<li><a href="/usuarios/sair" class="waves-effect"><i class="material-icons">exit_to_app</i>Sair</a></li>';
+
+
+            } else {
+                echo '<li><a href="/usuarios/curso" class="waves-effect"><i class="material-icons">book</i>Seu Curso</a></li>';
+                echo '<li><a href="/usuarios/frequencia"><i class="material-icons">calendar_today</i>Frequência</a></li>';
+                echo '<li><a href="/adm/turmas"><i class="material-icons">verified_user</i>Notas</a></li>';
+
+                echo '<li><div class="divider"></div></li>';
+                echo '<li><a href="/usuarios/sair" class="waves-effect"><i class="material-icons">arrow_drop_down</i>Sair</a></li>';
             }
 
         ?>
@@ -67,7 +70,6 @@
         <li><a href="/adm/turmas"><i class="material-icons">verified_user</i>Fechados</a></li>
     </ul>
     -->
-
 
     <nav class="orange z-depth-0  hide-on-large-only">
         <ul class="nav-wrapper">

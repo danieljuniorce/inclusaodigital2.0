@@ -53,6 +53,8 @@ class professorController extends controller
                 $moduloQuatro = filter_var($_POST['modulo_quatro']);
 
                 $professor->updateNota($matricula, $moduloUm, $moduloDois, $moduloTres, $moduloQuatro);
+
+                $_SESSION['aviso_sucesso'] = "Notas Atualizadas.";
                 header('Location: /adm/sucesso');
             } else {
 
@@ -78,7 +80,7 @@ class professorController extends controller
             $quartaAlt = filter_var(utf8_decode($_POST['quarta_alt']));
 
             $professor->criarquestao($modulo, $questao, $primeriaAlt, $segundaAlt, $terceiraAlt, $quartaAlt);
-
+            $_SESSION['aviso_sucesso'] = "Questão Criada com sucesso.";
             header('Location: /adm/sucesso');
         }
         $this->template('professor', 'criar-questoes');
@@ -108,7 +110,8 @@ class professorController extends controller
             foreach ($participantes as $participante) {
                 $professor->frequencia($participante['matricula'], $dataFrequencia, $frequencia[$participante['id']]);
             }
-
+            $_SESSION['aviso_sucesso'] = "Frequência feita com sucesso.";
+            $_SESSION['redirecionar'] = '/professor/frequencia';
             header('Location: /adm/sucesso');
         }
 

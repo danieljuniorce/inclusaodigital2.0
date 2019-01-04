@@ -4,7 +4,7 @@ class usuariosController extends controller
 
     public function __construct()
     {
-
+        session_start();
     }
 
     public function index()
@@ -38,4 +38,13 @@ class usuariosController extends controller
         header('Location: /usuarios/login');
     }
 
+    public function curso()
+    {
+        $this->template('usuarios', 'curso');
+    }
+
+    public function frequencia()
+    {
+        $this->template('usuarios', 'frequencia');
+    }
 }
