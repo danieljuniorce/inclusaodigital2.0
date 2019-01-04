@@ -21,7 +21,9 @@ class usuariosController extends controller
         $u = new usuarios();
         if (!empty($_POST['matricula']) && !empty($_POST['senha'])) {
             $matricula = filter_var($_POST['matricula']);
-            $senha = filter_var(md5($_POST['senha']));
+
+            $g = new geral();
+            $senha = filter_var($g->hashIntegrate($_POST['senha']));
 
             $u->entrar($matricula, $senha);
             header('Location: /home');

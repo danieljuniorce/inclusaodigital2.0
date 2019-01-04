@@ -13,7 +13,7 @@ $config = array();
 
 //Nome do Site
 $config['NomeProject'] = 'Inclusão Digital';
-
+define('HASH_ECRYPT', md5(sha1('inclusaodigital2019')));
 
 //Conexão ao banco de dados na parte de desenvolvimento e produçõa;
 if(ENVIRONMENT == "development"){

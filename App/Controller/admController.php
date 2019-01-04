@@ -44,8 +44,10 @@ class admController extends controller
             $telefone = filter_var($_POST['telefone']);
             $email = filter_var($_POST['email']);
             $sexo = filter_var($_POST['sexo']);
+            $g = new geral();
+            $senha = filter_var($g->hashIntegrate('senhapadrao'));
 
-            $adm->novoParticipante($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $matricula, $celular, $telefone, $email, $sexo);
+            $adm->novoParticipante($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $matricula, $celular, $telefone, $email, $sexo, $senha);
         } else {
             $dados['aviso'] = "Deu Ruim doido";
         }
@@ -109,7 +111,10 @@ class admController extends controller
                 $horario = filter_var($_POST['horario']);
                 $turno = filter_var($_POST['turno']);
                 $estadoParticipante = filter_var($_POST['estado_participante']);
-                $senha = filter_var(md5($_POST['senha']));
+
+                $g = new geral();
+                $senha = filter_var($g->hashIntegrate($_POST['senha']));
+
                 $email = filter_var($_POST['email']);
                 $sexo = filter_var($_POST['sexo']);
                 $turma = filter_var($_POST['turma']);

@@ -9,12 +9,12 @@
 class adm extends model
 {
 
-    public function novoParticipante($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $matricula, $celular, $telefone, $email, $sexo)
+    public function novoParticipante($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $matricula, $celular, $telefone, $email, $sexo, $senha)
     {
 
         if (isset($nomeCompleto) && isset($dataNascimento) && isset($estadoParticipante) && isset($celular) && isset($matricula)) {
             //Inciando a query;
-            $sql = "INSERT INTO participantes SET nome_completo = :nomeCompleto, data_nascimento = :dataNascimento, estado_participante = :estadoParticipante, rg = :rg, cpf = :cpf, matricula = :matricula, celular = :celular, telefone = :telefone, email = :email, sexo = :sexo";
+            $sql = "INSERT INTO participantes SET nome_completo = :nomeCompleto, data_nascimento = :dataNascimento, estado_participante = :estadoParticipante, rg = :rg, cpf = :cpf, matricula = :matricula, celular = :celular, telefone = :telefone, email = :email, sexo = :sexo, senha = :senha";
             $sql = $this->pdo->prepare($sql);
 
             //Paramentros;
@@ -28,7 +28,7 @@ class adm extends model
             $sql->bindParam(':telefone', $telefone);
             $sql->bindParam(':email', $email);
             $sql->bindParam(':sexo', $sexo);
-
+            $sql->bindParam(':senha', $senha);
             $sql->execute();
 
             //Inserção na tabela de Notas;
@@ -43,7 +43,7 @@ class adm extends model
             $sql = "SELECT * FROM participantes WHERE matricula = '$matricula' AND data_nascimento = '$dataNascimento'";
             $sql = $this->pdo->query($sql);
             if ($sql->rowCount() > 0) {
-                $_SESSION['aviso_sucesso'] = "Conta de Participante, criada com sucesso.";
+                $_SESSION['aviso_sucesso'] = "Conta de Participante criada com sucesso.";
                 header('Location: /adm/sucesso');
                 return true;
             } else {
