@@ -53,4 +53,19 @@ class usuarios extends model
 
         return $sql->fetch();
     }
+
+    public function notas()
+    {
+        $sql = "SELECT * FROM notas WHERE matricula_participante = :matricula";
+        $sql = $this->pdo->prepare($sql);
+
+        $sql->bindParam(':matricula', $_SESSION['matricula']);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            return $sql->fetch();
+        } else {
+            header('Location: /home');
+        }
+        
+    }
 }

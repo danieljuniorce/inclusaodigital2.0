@@ -7,7 +7,7 @@ class usuariosController extends controller
         session_start();
         if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
         } else {
-            header('Location: /usuarios/login');
+
         }
     }
 
@@ -58,6 +58,8 @@ class usuariosController extends controller
     }
     public function notas()
     {
-        $this->template('usuarios', 'notas');
+        $u = new usuarios();
+        $dados['notas'] = $u->notas();
+        $this->template('usuarios', 'notas', $dados);
     }
 }
