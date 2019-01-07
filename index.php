@@ -17,6 +17,6 @@
         }
 
     });
-require('Core/core.php');
+
 $core = new Core();
 $core->run();
