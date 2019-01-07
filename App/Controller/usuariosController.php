@@ -1,4 +1,5 @@
 <?php
+require_once('../Model/usuarios.php');
 class usuariosController extends controller
 {
 
