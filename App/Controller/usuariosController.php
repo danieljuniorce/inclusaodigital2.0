@@ -1,5 +1,5 @@
 <?php
-include '../Model/usuarios.php';
+
 class usuariosController extends controller
 {
 
