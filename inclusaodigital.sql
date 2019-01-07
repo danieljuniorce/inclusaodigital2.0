@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 02-Jan-2019 às 17:40
+-- Generation Time: 07-Jan-2019 às 18:44
 -- Versão do servidor: 10.1.37-MariaDB
 -- versão do PHP: 7.2.12
 
@@ -43,7 +43,30 @@ CREATE TABLE `banco_de_questao` (
 --
 
 INSERT INTO `banco_de_questao` (`id`, `modulo`, `questao`, `primeira_alt`, `segunda_alt`, `terceira_alt`, `quarta_alt`) VALUES
-(1, 'word', 'Dá', 'dá', 'dá', 'dá', 'dá');
+(1, 'word', 'Dá', 'dá', 'dá', 'dá', 'dá'),
+(2, 'word', 'dá', 'dá', 'dá', 'dá', 'dá');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `frequencias`
+--
+
+CREATE TABLE `frequencias` (
+  `id` int(11) NOT NULL,
+  `matricula` varchar(25) NOT NULL,
+  `presenca` int(2) DEFAULT '0',
+  `falta` int(2) DEFAULT '0',
+  `data_frequencia` varchar(550) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `frequencias`
+--
+
+INSERT INTO `frequencias` (`id`, `matricula`, `presenca`, `falta`, `data_frequencia`) VALUES
+(1, '2019826767581', 3, 4, '2019-01-04(falta)</br>2019-01-04 (falta)</br>2019-01-05 (presenca)</br>2019-01-04 (falta)</br>'),
+(9, '2019698007707', 18, 10, NULL);
 
 -- --------------------------------------------------------
 
@@ -65,8 +88,8 @@ CREATE TABLE `notas` (
 --
 
 INSERT INTO `notas` (`id`, `matricula_participante`, `modulo_um`, `modulo_dois`, `modulo_tres`, `modulo_quatro`) VALUES
-(1, '2019826767581', '2', '2', '2', '2'),
-(2, '20191340568210', '0', '0', '0', '0');
+(1, '2019826767581', '1', '2', '2', '2'),
+(9, '2019698007707', '10', '0', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -88,7 +111,7 @@ CREATE TABLE `participantes` (
   `sexo` varchar(15) DEFAULT NULL,
   `turma` varchar(25) DEFAULT NULL,
   `acesso` varchar(10) DEFAULT 'user',
-  `senha` varchar(32) DEFAULT NULL
+  `senha` varchar(70) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -96,8 +119,8 @@ CREATE TABLE `participantes` (
 --
 
 INSERT INTO `participantes` (`id`, `nome_completo`, `data_nascimento`, `estado_participante`, `rg`, `cpf`, `matricula`, `celular`, `telefone`, `email`, `sexo`, `turma`, `acesso`, `senha`) VALUES
-(4, 'Daniel Junior de Souza Lima', '1998-05-22', 'ativo', '4545454', '45454545455', '2019826767581', '85988637165', '85988637165', 'danieljuniorce@hotmail.com', 'masculino', '2019160', 'adm', 'd41d8cd98f00b204e9800998ecf8427e'),
-(5, 'Daniel Junior de Souza Lima', '1998-05-22', 'pre_inscricao', '012514', '25145458', '20191340568210', '85988637165', '85988637165', 'danieljuniorce@hotmail.com', 'masculino', NULL, 'user', NULL);
+(4, 'Daniel Junior de Souza Lima', '1998-05-22', 'ativo', '4545454', '45454545455', '2019826767581', '85988637165', '85988637165', 'danieljuniorce@hotmail.com', 'masculino', '2019160', 'adm', '$i$d$l$f$ccf795cbc72ed7a28406ae4908ea93ecf3ab0d8d1'),
+(12, 'Souza Lima', '2000-12-11', 'ativo', '4889489489', '48484984', '2019698007707', '4884894894', '84449849', 'danieljunior@gmail.com', 'masculino', NULL, 'user', '$i$d$l$f$c5895717e6f93c09419dfda8f5da2879fb6a05efe');
 
 -- --------------------------------------------------------
 
@@ -121,7 +144,8 @@ CREATE TABLE `turmas` (
 --
 
 INSERT INTO `turmas` (`id`, `inicio`, `final`, `criacao`, `turma`, `curso`, `turno`, `horario`) VALUES
-(1, '2019-01-07', '2019-01-11', '2019-01-02', '2019160', 'informatica_basica', 'manha', 'primeiro_horario');
+(1, '2019-01-07', '2019-01-11', '2019-01-02', '2019160', 'informatica_basica', 'manha', 'primeiro_horario'),
+(2, '1998-02-01', '1988-05-20', '2019-01-04', '2019189', 'informatica_basica', 'tarde', 'terceiro_horario');
 
 --
 -- Indexes for dumped tables
@@ -131,6 +155,12 @@ INSERT INTO `turmas` (`id`, `inicio`, `final`, `criacao`, `turma`, `curso`, `tur
 -- Indexes for table `banco_de_questao`
 --
 ALTER TABLE `banco_de_questao`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `frequencias`
+--
+ALTER TABLE `frequencias`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -159,25 +189,31 @@ ALTER TABLE `turmas`
 -- AUTO_INCREMENT for table `banco_de_questao`
 --
 ALTER TABLE `banco_de_questao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `frequencias`
+--
+ALTER TABLE `frequencias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `notas`
 --
 ALTER TABLE `notas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `participantes`
 --
 ALTER TABLE `participantes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `turmas`
 --
 ALTER TABLE `turmas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

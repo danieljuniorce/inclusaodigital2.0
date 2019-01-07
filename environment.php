@@ -6,4 +6,4 @@
  * Time: 22:55
  */
 
-define("ENVIRONMENT", "development");
+define('ENVIRONMENT', "development");
