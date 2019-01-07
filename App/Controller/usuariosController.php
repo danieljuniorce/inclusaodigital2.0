@@ -1,5 +1,5 @@
 <?php
-require_once('../Model/usuarios.php');
+include '../Model/usuarios.php';
 class usuariosController extends controller
 {
 
