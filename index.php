@@ -1,5 +1,5 @@
 <?php
-    require_once('Core/core.php');
+
     spl_autoload_register(function($class){
 
         if(strpos($class, 'Controller') > -1)
@@ -17,6 +17,6 @@
         }
 
     });
-
+require('Core/core.php');
 $core = new Core();
 $core->run();
