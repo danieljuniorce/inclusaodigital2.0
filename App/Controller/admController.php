@@ -44,10 +44,12 @@ class admController extends controller
             $telefone = filter_var($_POST['telefone']);
             $email = filter_var($_POST['email']);
             $sexo = filter_var($_POST['sexo']);
+            $tipo = filter_var($_POST['tipo']);
+            $numeroTipo = filter_var($_POST['numero_tipo']);
             $g = new geral();
             $senha = filter_var($g->hashIntegrate('senhapadrao'));
 
-            $adm->novoParticipante($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $matricula, $celular, $telefone, $email, $sexo, $senha);
+            $adm->novoParticipante($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $matricula, $celular, $telefone, $email, $sexo, $senha, $tipo, $numeroTipo);
         } else {
             $dados['aviso'] = "Deu Ruim doido";
         }

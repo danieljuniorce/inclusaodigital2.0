@@ -15,8 +15,3 @@ $config = array();
 $config['NomeProject'] = 'Inclusão Digital';
 define('HASH_ECRYPT', md5(sha1('inclusaodigital2019')));
 
-//Conexão com banco de dados;
-define(DB_HOST, 'localhost');
-define(DB_USER, 'root');
-define(DB_PASSWORD, '');
-define(DB_NAME, 'inclusaodigital');

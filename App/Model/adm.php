@@ -9,12 +9,12 @@
 class adm extends model
 {
 
-    public function novoParticipante($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $matricula, $celular, $telefone, $email, $sexo, $senha)
+    public function novoParticipante($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $matricula, $celular, $telefone, $email, $sexo, $senha, $tipo, $numeroTipo)
     {
 
         if (isset($nomeCompleto) && isset($dataNascimento) && isset($estadoParticipante) && isset($celular) && isset($matricula)) {
             //Inciando a query;
-            $sql = "INSERT INTO participantes SET nome_completo = :nomeCompleto, data_nascimento = :dataNascimento, estado_participante = :estadoParticipante, rg = :rg, cpf = :cpf, matricula = :matricula, celular = :celular, telefone = :telefone, email = :email, sexo = :sexo, senha = :senha";
+            $sql = "INSERT INTO participantes SET nome_completo = :nomeCompleto, data_nascimento = :dataNascimento, estado_participante = :estadoParticipante, rg = :rg, cpf = :cpf, matricula = :matricula, celular = :celular, telefone = :telefone, email = :email, sexo = :sexo, senha = :senha, tipo = :tipo, numeracao_tipo = :numeroTipo";
             $sql = $this->pdo->prepare($sql);
 
             //Paramentros;
@@ -29,6 +29,8 @@ class adm extends model
             $sql->bindParam(':email', $email);
             $sql->bindParam(':sexo', $sexo);
             $sql->bindParam(':senha', $senha);
+            $sql->bindParam(':tipo', $tipo);
+            $sql->bindParam(':numeroTipo', $numeroTipo);
             $sql->execute();
 
             //Inserção na tabela de Notas;

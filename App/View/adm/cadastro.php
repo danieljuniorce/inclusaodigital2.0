@@ -1,5 +1,5 @@
 
-<?php $matricula = date('Y').rand();?>
+<?php $matricula = date('Y').rand(100, 400);?>
 <div class="">
   <div class="row">
     <button class="right btn orange z-depth-0">Matricula Gerada: <?php echo $matricula; ?></button>
@@ -13,14 +13,27 @@
   <br>
   <div class="row">
     <div class="col s12 m1 l1">
-
     </div>
     <form method="POST" >
       <input type="hidden" value="<?php echo $matricula;?>" name="matricula">
     <div class="col s12 m10 l10">
         <!-- Curso e Estado do Participante -->
         <div class="row">
-          <div class="col s12 m6 l6">
+          <div class="col s12 m3 l3">
+            <div class="input-field">
+            <select name="tipo" id="tipo">
+                    <option value="" disabled selected>Tipo de Participante</option>
+                    <option value="avulso">Avulso</option>
+                    <option value="corpaticipante">Corpaticipante</option>
+                </select>
+                <label for="tipo">Tipo</label>
+            </div>
+          </div>
+          <div class="col s12 m3 l3">
+            <div class="input-field">
+                <input type="text" name="numero_tipo" id="numero_tipo">
+                <label for="numero_tipo">Númeração</label>
+            </div>
           </div>
           <div class="col s12 m6 l6">
           <div class="input-field">
@@ -41,16 +54,16 @@
         <div class="row">
           <div class="col s12 m6 l6">
               <div class="input-field s6 offset-2">
+                <p class="">Nome Completo</p>
                 <i class="material-icons prefix">face</i>
-                <input type="text" id="nome_completo" name="nome_completo" required>
-                <label for="nome_complete">Nome Completo</label>
+                <input type="text" id="nome_completo" name="nome_completo" required placeholder="Digite o nome completo do participante.">
               </div>
           </div>
           <div class="col s12 m6 l6">
             <div class="input-field s6 offset-2">
+                <p class="">Data de Nascimento</p>
                 <i class="material-icons prefix">calendar_today</i>
                 <input type="date" id="data_nascimento" name="data_nascimento" required>
-                <label for="data_nascimento">Data de Nascimento</label>
               </div>
           </div>
         </div>
@@ -103,10 +116,10 @@
                 </div>
             </div>
             <div class="col s12 m6 l6">
-                <div class="input-field s6 offset-2">
+                <div class="input-field">
                   <i class="material-icons prefix">email</i>
-                  <input class="email" name="email" id="email">
-                  <label for="email">E-mail</label>
+                  <input class="email" name="email" id="email" placeholder="Digite o E-mail">
+
                 </div>
             </div>
         </div>

@@ -20,6 +20,7 @@ class usuarios extends model
                 $_SESSION['matricula'] = $user['matricula'];
                 $_SESSION['nome_completo'] = $user['nome_completo'];
                 $_SESSION['acesso'] = $user['acesso'];
+                $_SESSION['sexo'] = $user['sexo'];
 
                 return $user;
                 header('Location: /home');

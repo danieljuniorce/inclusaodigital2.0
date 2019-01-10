@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 
 ?>
 <!DOCTYPE html>
@@ -20,11 +20,20 @@
         <div class="user-view">
             <div class="background orange">
             </div>
-            <a href="#!user"><img class="circle" src="../../src/img/perfil.jpg"></a>
+            <?php 
+                if($_SESSION['sexo'] == 'masculino') {
+                    echo '<a href="#!user"><img class="circle" src="../../src/img/perfil-boy.jpg"></a>';
+                } else if($_SESSION['sexo'] == 'feminina') {
+                    echo '<a href="#!user"><img class="circle" src="../../src/img/perfil-girl.jpg"></a>';
+                }
+            ?>
             <a href="#!name"><span class="white-text name"><?php echo $_SESSION['nome_completo'];?></span></a>
             <a href="#!email"><span class="white-text email">Matricula: <?php echo $_SESSION['matricula'];?></span></a>
         </div>
         </li>
+            <li>
+                <a href="/home"> <i class="material-icons left">home</i> Página Inicial</a>
+            </li>
         <?php
             if ($_SESSION['acesso'] == 'adm') {
                 echo '<li><a href="/adm" class="waves-effect"><i class="material-icons">face</i>Participantes</a></li>';
