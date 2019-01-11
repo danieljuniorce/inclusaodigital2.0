@@ -1,6 +1,8 @@
 <?php
   $idTurma = date('Y') . rand(1, 200);
-
+  $token = sha1(md5(date('Y-m-d').rand()));
+  $_SESSION['token'] = $token;
+  ?>
 ?>
 
 <form method="POST">
@@ -10,6 +12,7 @@
         <br>
     </div>
     <input type="hidden" value="<?php echo $turmas;?>" name="turma">
+    <input type="hidden" value="<?php echo $token;?>" name="token">
     <hr>
     <br>
     <div class="row container">

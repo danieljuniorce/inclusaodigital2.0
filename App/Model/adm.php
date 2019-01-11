@@ -9,49 +9,56 @@
 class adm extends model
 {
 
-    public function novoParticipante($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $matricula, $celular, $telefone, $email, $sexo, $senha, $tipo, $numeroTipo)
+    public function novoParticipante($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $matricula, $celular, $telefone, $email, $sexo, $senha, $tipo, $numeroTipo, $token)
     {
 
         if (isset($nomeCompleto) && isset($dataNascimento) && isset($estadoParticipante) && isset($celular) && isset($matricula)) {
-            //Inciando a query;
-            $sql = "INSERT INTO participantes SET nome_completo = :nomeCompleto, data_nascimento = :dataNascimento, estado_participante = :estadoParticipante, rg = :rg, cpf = :cpf, matricula = :matricula, celular = :celular, telefone = :telefone, email = :email, sexo = :sexo, senha = :senha, tipo = :tipo, numeracao_tipo = :numeroTipo";
-            $sql = $this->pdo->prepare($sql);
+            $this->token = $token;
+            
+            if ($this->csrf() != false) {
+                //Inciando a query;
+                $sql = "INSERT INTO participantes SET nome_completo = :nomeCompleto, data_nascimento = :dataNascimento, estado_participante = :estadoParticipante, rg = :rg, cpf = :cpf, matricula = :matricula, celular = :celular, telefone = :telefone, email = :email, sexo = :sexo, senha = :senha, tipo = :tipo, numeracao_tipo = :numeroTipo";
+                $sql = $this->pdo->prepare($sql);
 
-            //Paramentros;
-            $sql->bindParam(':nomeCompleto', $nomeCompleto);
-            $sql->bindParam(':dataNascimento', $dataNascimento);
-            $sql->bindParam(':estadoParticipante', $estadoParticipante);
-            $sql->bindParam(':rg', $rg);
-            $sql->bindParam(':cpf', $cpf);
-            $sql->bindParam(':matricula', $matricula);
-            $sql->bindParam(':celular', $celular);
-            $sql->bindParam(':telefone', $telefone);
-            $sql->bindParam(':email', $email);
-            $sql->bindParam(':sexo', $sexo);
-            $sql->bindParam(':senha', $senha);
-            $sql->bindParam(':tipo', $tipo);
-            $sql->bindParam(':numeroTipo', $numeroTipo);
-            $sql->execute();
+                //Paramentros;
+                $sql->bindParam(':nomeCompleto', $nomeCompleto);
+                $sql->bindParam(':dataNascimento', $dataNascimento);
+                $sql->bindParam(':estadoParticipante', $estadoParticipante);
+                $sql->bindParam(':rg', $rg);
+                $sql->bindParam(':cpf', $cpf);
+                $sql->bindParam(':matricula', $matricula);
+                $sql->bindParam(':celular', $celular);
+                $sql->bindParam(':telefone', $telefone);
+                $sql->bindParam(':email', $email);
+                $sql->bindParam(':sexo', $sexo);
+                $sql->bindParam(':senha', $senha);
+                $sql->bindParam(':tipo', $tipo);
+                $sql->bindParam(':numeroTipo', $numeroTipo);
+                $sql->execute();
 
-            //Inserção na tabela de Notas;
-            $sqlNotas = "INSERT INTO notas SET matricula_participante = '$matricula'";
-            $sqlNotas = $this->pdo->query($sqlNotas);
+                //Inserção na tabela de Notas;
+                $sqlNotas = "INSERT INTO notas SET matricula_participante = '$matricula'";
+                $sqlNotas = $this->pdo->query($sqlNotas);
 
-            //Inserção na tabela de Frequencia
-            $sqlInsert = "INSERT INTO frequencias SET matricula = '$matricula'";
-            $this->pdo->query($sqlInsert);
+                //Inserção na tabela de Frequencia
+                $sqlInsert = "INSERT INTO frequencias SET matricula = '$matricula'";
+                $this->pdo->query($sqlInsert);
 
-            //Verificando se foi inserido o participante;
-            $sql = "SELECT * FROM participantes WHERE matricula = '$matricula' AND data_nascimento = '$dataNascimento'";
-            $sql = $this->pdo->query($sql);
-            if ($sql->rowCount() > 0) {
-                $_SESSION['aviso_sucesso'] = "Conta de Participante criada com sucesso.";
-                header('Location: /adm/sucesso');
-                return true;
+                //Verificando se foi inserido o participante;
+                $sql = "SELECT * FROM participantes WHERE matricula = '$matricula' AND data_nascimento = '$dataNascimento'";
+                $sql = $this->pdo->query($sql);
+
+                if ($sql->rowCount() > 0) {
+                    $_SESSION['aviso_sucesso'] = "Conta de Participante criada com sucesso.";
+                    header('Location: /adm/sucesso');
+                    return true;
+                } else {
+                    
+                    header('Location: /adm/falhou');
+                    return false;
+                }
             } else {
-                
                 header('Location: /adm/falhou');
-                return false;
             }
         } else {
             header('Location: /adm/falhou');
@@ -99,70 +106,82 @@ class adm extends model
         
     }
 
-    public function atualizarDados($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $celular, $telefone, $email, $senha, $matricula, $sexo, $turma)
+    public function atualizarDados($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $celular, $telefone, $email, $senha, $matricula, $sexo, $turma, $token)
     {
         $dados = array();
         if (isset($matricula) && !empty($matricula)) {
-            $sql = "SELECT * FROM participantes WHERE matricula = '$matricula'";
-            $sql = $this->pdo->query($sql);
+            $this->token = $token;
+            if ($this->csrf() != false) {
 
-            if ($sql->rowCount() > 0) {
-                $dados = $sql->fetch();
+                $sql = "SELECT * FROM participantes WHERE matricula = '$matricula'";
+                $sql = $this->pdo->query($sql);
 
-                //Operação ternaria de preenchimento de dados;
-                $nomeCompleto = isset($nomeCompleto) && !empty($nomeCompleto) ? $nomeCompleto : $dados['nome_completo'];
-                $dataNascimento = isset($dataNascimento) && !empty($dataNascimento) ? $dataNascimento : $dados['data_nascimento'];
-                $estadoParticipante = isset($estadoParticipante) && !empty($estadoParticipante) ? $estadoParticipante : $dados['estado_participante'];
-                $rg = isset($rg) && !empty($rg) ? $rg : $dados['rg'];
-                $cpf = isset($cpf) && !empty($cpf) ? $cpf : $dados['cpf'];
-                $celular = isset($celular) && !empty($celular) ? $celular : $dados['celular'];
-                $telefone = isset($telefone) && !empty($telefone) ? $telefone : $dados['telefone'];
-                $email = isset($email) && !empty($email) ? $email : $dados['email'];
-                $senha = isset($senha) && !empty($senha) ? $senha : $dados['senha'];
-                $sexo = isset($sexo) && !empty($sexo) ? $sexo : $dados['sexo'];
-                $turma = isset($turma) && !empty($turma) ? $turma : $dados['turma'];
+                if ($sql->rowCount() > 0) {
+                    $dados = $sql->fetch();
 
-                $sqlAtt = "UPDATE participantes SET nome_completo = :nomeCompleto, data_nascimento = :dataNascimento, estado_participante = :estadoParticipante, rg = :rg, cpf = :cpf, celular = :celular, telefone = :telefone, email = :email, senha = :senha, sexo = :sexo, turma = :turma WHERE matricula = :matricula";
-                $sqlAtt = $this->pdo->prepare($sqlAtt);
+                    //Operação ternaria de preenchimento de dados;
+                    $nomeCompleto = isset($nomeCompleto) && !empty($nomeCompleto) ? $nomeCompleto : $dados['nome_completo'];
+                    $dataNascimento = isset($dataNascimento) && !empty($dataNascimento) ? $dataNascimento : $dados['data_nascimento'];
+                    $estadoParticipante = isset($estadoParticipante) && !empty($estadoParticipante) ? $estadoParticipante : $dados['estado_participante'];
+                    $rg = isset($rg) && !empty($rg) ? $rg : $dados['rg'];
+                    $cpf = isset($cpf) && !empty($cpf) ? $cpf : $dados['cpf'];
+                    $celular = isset($celular) && !empty($celular) ? $celular : $dados['celular'];
+                    $telefone = isset($telefone) && !empty($telefone) ? $telefone : $dados['telefone'];
+                    $email = isset($email) && !empty($email) ? $email : $dados['email'];
+                    $senha = isset($senha) && !empty($senha) ? $senha : $dados['senha'];
+                    $sexo = isset($sexo) && !empty($sexo) ? $sexo : $dados['sexo'];
+                    $turma = isset($turma) && !empty($turma) ? $turma : $dados['turma'];
 
-                $sqlAtt->bindParam(':nomeCompleto', $nomeCompleto);
-                $sqlAtt->bindParam(':dataNascimento', $dataNascimento);
-                $sqlAtt->bindParam(':estadoParticipante', $estadoParticipante);
-                $sqlAtt->bindParam(':rg', $rg);
-                $sqlAtt->bindParam(':cpf', $cpf);
-                $sqlAtt->bindParam(':celular', $celular);
-                $sqlAtt->bindParam(':telefone', $telefone);
-                $sqlAtt->bindParam(':email', $email);
-                $sqlAtt->bindParam(':senha', $senha);
-                $sqlAtt->bindParam(':sexo', $sexo);
-                $sqlAtt->bindParam(':turma', $turma);
-                $sqlAtt->bindParam(':matricula', $matricula);
-                $sqlAtt->execute();
+                    $sqlAtt = "UPDATE participantes SET nome_completo = :nomeCompleto, data_nascimento = :dataNascimento, estado_participante = :estadoParticipante, rg = :rg, cpf = :cpf, celular = :celular, telefone = :telefone, email = :email, senha = :senha, sexo = :sexo, turma = :turma WHERE matricula = :matricula";
+                    $sqlAtt = $this->pdo->prepare($sqlAtt);
 
-                $_SESSION['aviso_sucesso'] = "Dados Atualizado com sucesso.";
-                return $dados;
+                    $sqlAtt->bindParam(':nomeCompleto', $nomeCompleto);
+                    $sqlAtt->bindParam(':dataNascimento', $dataNascimento);
+                    $sqlAtt->bindParam(':estadoParticipante', $estadoParticipante);
+                    $sqlAtt->bindParam(':rg', $rg);
+                    $sqlAtt->bindParam(':cpf', $cpf);
+                    $sqlAtt->bindParam(':celular', $celular);
+                    $sqlAtt->bindParam(':telefone', $telefone);
+                    $sqlAtt->bindParam(':email', $email);
+                    $sqlAtt->bindParam(':senha', $senha);
+                    $sqlAtt->bindParam(':sexo', $sexo);
+                    $sqlAtt->bindParam(':turma', $turma);
+                    $sqlAtt->bindParam(':matricula', $matricula);
+                    $sqlAtt->execute();
 
+                    $_SESSION['aviso_sucesso'] = "Dados Atualizado com sucesso.";
+                    return $dados;
+
+                } else {
+                    $dados = "Dados não encontrado";
+                }
             } else {
-                $dados = "Dados não encontrado";
+                header('Location: /adm/falhou');
             }
         } else {
             $dados = "Dados não encontrado";
         }
     }
 
-    public function criarturmas($dataInicio, $dataFinal, $numeroTurma, $dataCriacao, $curso, $turno, $horario)
+    public function criarturmas($dataInicio, $dataFinal, $numeroTurma, $dataCriacao, $curso, $turno, $horario, $token)
     {
-        $sql = "INSERT INTO turmas SET inicio = :inico, final = :fim, turma = :turma, criacao = :criacao, curso = :curso, turno = :turno, horario = :horario";
-        $sql = $this->pdo->prepare($sql);
+        $this->token = $token;
+        if ($this->csrf() != false) {
+            $sql = "INSERT INTO turmas SET inicio = :inico, final = :fim, turma = :turma, criacao = :criacao, curso = :curso, turno = :turno, horario = :horario";
+            $sql = $this->pdo->prepare($sql);
+    
+            $sql->bindParam(':inico', $dataInicio);
+            $sql->bindParam(':fim', $dataFinal);
+            $sql->bindParam(':turma', $numeroTurma);
+            $sql->bindParam(':criacao', $dataCriacao);
+            $sql->bindParam(':curso', $curso);
+            $sql->bindParam(':turno', $turno);
+            $sql->bindParam(':horario', $horario);
+            $sql->execute();
+        } else {
+            header('Location: /adm/falhou');
+        }
 
-        $sql->bindParam(':inico', $dataInicio);
-        $sql->bindParam(':fim', $dataFinal);
-        $sql->bindParam(':turma', $numeroTurma);
-        $sql->bindParam(':criacao', $dataCriacao);
-        $sql->bindParam(':curso', $curso);
-        $sql->bindParam(':turno', $turno);
-        $sql->bindParam(':horario', $horario);
-        $sql->execute();
     }
 
     public function turmas()
@@ -193,6 +212,8 @@ class adm extends model
     public function editarTurmas($turma, $dataInicio, $dataFinal, $curso, $turno, $horario)
     {
         if (isset($turma) && !empty($turma)) {
+            $this->token = filter_var($_POST['token']);
+            if ($this->token != false) {
 
                 $dataInicio = isset($dataInicio) && !empty($dataInicio) ? $dataInicio : $dados['inicio'];
                 $dataFinal = isset($dataFinal) && !empty($dataFinal) ? $dataFinal : $dados['final'];
@@ -205,6 +226,10 @@ class adm extends model
                 $sqlAtt = $this->pdo->query($sqlAtt);
 
                 $_SESSION['aviso_sucesso'] = "Turma Atualizada com Sucesso";
+            } else {
+                header('Location: /adm/falhou');
+            }
+
         } else {
             $dados = "Turma não Encontrada";
         }

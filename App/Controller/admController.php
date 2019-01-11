@@ -46,10 +46,11 @@ class admController extends controller
             $sexo = filter_var($_POST['sexo']);
             $tipo = filter_var($_POST['tipo']);
             $numeroTipo = filter_var($_POST['numero_tipo']);
+            $token = filter_var($_POST['token']);
             $g = new geral();
             $senha = filter_var($g->hashIntegrate('senhapadrao'));
 
-            $adm->novoParticipante($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $matricula, $celular, $telefone, $email, $sexo, $senha, $tipo, $numeroTipo);
+            $adm->novoParticipante($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $matricula, $celular, $telefone, $email, $sexo, $senha, $tipo, $numeroTipo, $token);
         } else {
             $dados['aviso'] = "Deu Ruim doido";
         }
@@ -113,6 +114,7 @@ class admController extends controller
                 $horario = filter_var($_POST['horario']);
                 $turno = filter_var($_POST['turno']);
                 $estadoParticipante = filter_var($_POST['estado_participante']);
+                $token = filter_var($_POST['token']);
 
                 $g = new geral();
                 $senha = filter_var($g->hashIntegrate($_POST['senha']));
@@ -121,7 +123,7 @@ class admController extends controller
                 $sexo = filter_var($_POST['sexo']);
                 $turma = filter_var($_POST['turma']);
 
-                $adm->atualizarDados($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $celular, $telefone, $email, $senha, $matricula, $sexo, $turma);
+                $adm->atualizarDados($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $celular, $telefone, $email, $senha, $matricula, $sexo, $turma, $token);
 
                 header('Location: /adm/sucesso');
             }
@@ -146,8 +148,9 @@ class admController extends controller
             $curso = filter_var($_POST['curso']);
             $turno = filter_var($_POST['turno']);
             $horario = filter_var($_POST['horario']);
+            $token = filter_var($_POST['token']);
 
-            $adm->criarturmas($dataInicio, $dataFinal, $numeroTurma, $dataCriacao, $curso, $turno, $horario);
+            $adm->criarturmas($dataInicio, $dataFinal, $numeroTurma, $dataCriacao, $curso, $turno, $horario, $token);
             header('Location: /adm/sucesso');
         }
 
@@ -182,9 +185,10 @@ class admController extends controller
                 $curso = filter_var($_POST['curso']);
                 $turno = filter_var($_POST['turno']);
                 $horario = filter_var($_POST['horario']);
+                $token = filter_var($_POST['token']);
 
     
-                $adm->editarTurmas($turma, $dataInicio, $dataFinal, $curso, $turno, $horario);
+                $adm->editarTurmas($turma, $dataInicio, $dataFinal, $curso, $turno, $horario, $token);
                 header('Location: /adm/sucesso');
             }
         } else {

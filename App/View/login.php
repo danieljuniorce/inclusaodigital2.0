@@ -1,3 +1,7 @@
+<?php
+$token = sha1(md5(date('Y-m-d').rand()));
+$_SESSION['token'] = $token;
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -33,6 +37,7 @@
           </div>
           <br>
           <button class="btn right orange" type="submit">Entrar</button>&nbsp;&nbsp;
+          <input type="hidden" value="<?php echo $token;?>" name="token">
         </form>
       </div>
       </div>

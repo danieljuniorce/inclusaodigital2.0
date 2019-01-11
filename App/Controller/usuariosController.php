@@ -24,8 +24,9 @@ class usuariosController extends controller
             $matricula = filter_var($_POST['matricula']);
             $g = new geral();
             $senha = filter_var($g->hashIntegrate($_POST['senha']));
+            $token = filter_var($_POST['token']);
                 
-            $u->entrar($matricula, $senha);
+            $u->entrar($matricula, $senha, $token);
             header('Location: /home');
         } else {
 

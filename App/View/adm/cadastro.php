@@ -1,5 +1,9 @@
 
-<?php $matricula = date('Y').rand(100, 400);?>
+<?php 
+    $matricula = date('Y').rand(100, 400);
+    $token = sha1(md5(date('Y-m-d').rand()));
+    $_SESSION['token'] = $token;
+?>
 <div class="">
   <div class="row">
     <button class="right btn orange z-depth-0">Matricula Gerada: <?php echo $matricula; ?></button>
@@ -16,6 +20,7 @@
     </div>
     <form method="POST" >
       <input type="hidden" value="<?php echo $matricula;?>" name="matricula">
+      <input type="hidden" value="<?php echo $token;?>" name="token">
     <div class="col s12 m10 l10">
         <!-- Curso e Estado do Participante -->
         <div class="row">

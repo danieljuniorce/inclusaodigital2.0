@@ -1,5 +1,7 @@
 <?php
 $idTurma = date('Y') . rand(1, 200);
+$token = sha1(md5(date('Y-m-d').rand()));
+$_SESSION['token'] = $token;
 ?>
 
 <form method="POST">
@@ -9,6 +11,7 @@ $idTurma = date('Y') . rand(1, 200);
     <br>
     </div>
     <input class="btn z-depth-0" value="<?php echo $idTurma; ?>" type="hidden" id="turma" name="turma"/>
+    <input type="hidden" value="<?php echo $token;?>" name="token">
     <br>
     <div class="row container">
         <div class="col s12 m6 l6">

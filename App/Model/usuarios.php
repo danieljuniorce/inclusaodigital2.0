@@ -2,28 +2,35 @@
 class usuarios extends model
 {
 
-    public function entrar($matricula, $senha)
+    public function entrar($matricula, $senha, $token)
     {
         if (!empty($matricula) and !empty($senha)) {
-            $sql = "SELECT * FROM participantes WHERE matricula = :matricula AND senha = :senha";
-            $sql = $this->pdo->prepare($sql);
+            $this->token = $token;
+            if ($this->csrf() != false) {
 
-            $sql->bindParam(':matricula', $matricula);
-            $sql->bindParam(':senha', $senha);
-            $sql->execute();
+                $sql = "SELECT * FROM participantes WHERE matricula = :matricula AND senha = :senha";
+                $sql = $this->pdo->prepare($sql);
 
-            if ($sql->rowCount() > 0) {
-                $user = $sql->fetch();
-                session_start();
+                $sql->bindParam(':matricula', $matricula);
+                $sql->bindParam(':senha', $senha);
+                $sql->execute();
 
-                $_SESSION['id'] = $user['id'];
-                $_SESSION['matricula'] = $user['matricula'];
-                $_SESSION['nome_completo'] = $user['nome_completo'];
-                $_SESSION['acesso'] = $user['acesso'];
-                $_SESSION['sexo'] = $user['sexo'];
+                if ($sql->rowCount() > 0) {
+                    $user = $sql->fetch();
+                    session_start();
 
-                return $user;
-                header('Location: /home');
+                    $_SESSION['id'] = $user['id'];
+                    $_SESSION['matricula'] = $user['matricula'];
+                    $_SESSION['nome_completo'] = $user['nome_completo'];
+                    $_SESSION['acesso'] = $user['acesso'];
+                    $_SESSION['sexo'] = $user['sexo'];
+
+                    return $user;
+                    header('Location: /home');
+                }
+
+            } else {
+                return 'Atualize sua página para sua segurança';
             }
         } else {
             return 'Deu ruim 2.0';

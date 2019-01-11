@@ -1,3 +1,8 @@
+<?php 
+    $token = sha1(md5(date('Y-m-d').rand()));
+    $_SESSION['token'] = $token;
+?>
+
 <div class="card-panel">
         <div class="orange">
             <br>
@@ -9,6 +14,7 @@
 
     <form method="POST" class="container">
     <input type="hidden" value="<?php echo $dados['matricula'];?>" name="matricula"/>
+    <input type="hidden" value="<?php echo $token;?>" name="token">
     <br>
         <div class="row">
             <div class="col s12 m6 l6">

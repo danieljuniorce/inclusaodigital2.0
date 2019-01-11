@@ -21,4 +21,13 @@ class model
         }
     }
 
+    public function csrf()
+    {
+        if ($_SESSION['token'] == $this->token) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
