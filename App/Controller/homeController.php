@@ -14,7 +14,7 @@ class homeController extends controller
 
     public function index()
     {
-
+        $_SESSION['name'] = 'Página Inicial';
         $this->template('', 'home');
     }
 

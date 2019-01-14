@@ -12,7 +12,7 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="../../src/css/materialize.css" media="screen,projection"/>
     <link rel="stylesheet" type="text/css" href="../../src/css/style.css"/>
-    <title>Página Inicial - Inclusão Digital</title>
+    <title><?php echo $_SESSION['name'];?> - Inclusão Digital</title>
 </head>
 <body class="grey lighten-5">
     <ul id="slide-out" class="side-nav fixed ">

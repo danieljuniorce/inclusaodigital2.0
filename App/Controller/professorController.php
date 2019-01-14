@@ -17,11 +17,13 @@ class professorController extends controller
 
     public function index()
     {
+        $_SESSION['name'] = 'Área do Professor';
         $this->template('professor', 'area-professor');
     }
 
     public function notas()
     {
+        $_SESSION['name'] = 'Relações de Notas';
         $professor = new professor();
 
         $dados['turmas'] = $professor->selectedTurmas();
@@ -31,6 +33,7 @@ class professorController extends controller
 
     public function notasparticipantes($turma)
     {
+        $_SESSION['name'] = 'Relações de Notas';
         $professor = new professor();
 
         $dados['participantes'] = $professor->selectedParticipantePorTurma($turma);
@@ -40,6 +43,7 @@ class professorController extends controller
     }
     public function editarnotas($matricula)
     {
+        $_SESSION['name'] = 'Editar Notas';
         $dados = array();
         $professor = new professor();
         $dados['participante'] = $professor->selectedParticipante($matricula);
@@ -65,11 +69,13 @@ class professorController extends controller
 
     public function questoes()
     {
+        $_SESSION['name'] = 'Questões';
         $this->template('professor', 'banco-de-questoes');
     }
     
     public function criarquestoes()
     {
+        $_SESSION['name'] = 'Criar Questão';
         $professor = new professor();
         if (isset($_POST['questao']) && !empty($_POST['questao'])) {
             $modulo = filter_var(utf8_decode($_POST['modulo']));
@@ -88,6 +94,7 @@ class professorController extends controller
 
     public function frequencia()
     {
+        $_SESSION['name'] = 'Frequência';
         $professor = new professor();
 
         $dados['turmas'] = $professor->selectedTurmas();
@@ -96,6 +103,7 @@ class professorController extends controller
     }
     public function frequenciaturma($turma)
     {
+        $_SESSION['name'] = 'Frequência da Turma';
         $professor = new professor();
 
         $dados['participantes'] = $professor->selectedParticipantePorTurma($turma);

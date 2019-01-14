@@ -20,7 +20,7 @@ class admController extends controller
     public function index()
     {
         $dados = array();
-
+        $_SESSION['name'] = 'Administração';
         $this->template('adm', "adm-home", $dados);
     }
 
@@ -28,7 +28,7 @@ class admController extends controller
     {
         $dados = array();
         $adm = new adm();
-
+        $_SESSION['name'] = 'Cadastrar Participante';
         if (isset($_POST['nome_completo']) && !empty($_POST['nome_completo'])) {
             //Variaveis com paramentros passado pelo cadastro;
             $nomeCompleto = filter_var($_POST['nome_completo']);
@@ -61,17 +61,19 @@ class admController extends controller
     //Vizualização sucesso e falhou no cadastramento.
     public function sucesso()
     {
+        $_SESSION['name'] = 'Sucesso';
         $this->template('adm', 'cadastro-sucesso');
     }
     public function falhou()
     {
+        $_SESSION['name'] = 'Falhou';
         $this->template('adm', 'cadastro-falhou');
     }
 
     public function estados($estado)
     {
         $adm = new adm();
-
+        $_SESSION['name'] = 'Estado do Participante';
         if ($estado == 'ativo') {
             $dados['estado'] = 'ATIVO';
         } else if ($estado == 'pre_inscricao') {
@@ -95,7 +97,7 @@ class admController extends controller
     {
         $dados = array();
         $adm = new adm();
-
+        $_SESSION['name'] = 'Editar';
         //Vizualizar os dados
         if (!empty($matricula)) {
             $dados['dados'] = $adm->vizualizarDados($matricula);
@@ -138,7 +140,7 @@ class admController extends controller
     {
         $adm = new adm();
         $dados = array();
-
+        $_SESSION['name'] = 'Criar Turma';
         if (!empty($_POST['inicio']) && !empty($_POST['final']) && !empty($_POST['turma'])) {
 
             $dataInicio = filter_var($_POST['inicio']);
@@ -158,6 +160,7 @@ class admController extends controller
     }
     public function turmas()
     {
+        $_SESSION['name'] = 'Turmas';
         $dados = array();
         $adm = new adm();
 
@@ -172,6 +175,7 @@ class admController extends controller
 
     public function editarturma($turma)
     {
+        $_SESSION['name'] = 'Editar Turmas';
         $dados = array();
         $dados['turmas'] = $turma;
         $adm = new adm();

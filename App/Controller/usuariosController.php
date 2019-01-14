@@ -14,11 +14,13 @@ class usuariosController extends controller
 
     public function index()
     {
+        $_SESSION['name'] = 'Página Incial';
         header('Location: /usuarios/login');
     }
 
     public function login()
     {
+        $_SESSION['name'] = 'Entrar';
         $u = new usuarios();
         if (!empty($_POST['matricula']) && !empty($_POST['senha'])) {
             $matricula = filter_var($_POST['matricula']);
@@ -50,6 +52,7 @@ class usuariosController extends controller
 
     public function frequencia()
     {
+        $_SESSION['name'] = 'Frequência';
         $u = new usuarios();
         $frequencia = $u->frequencia();
 
@@ -60,6 +63,7 @@ class usuariosController extends controller
     }
     public function notas()
     {
+        $_SESSION['name'] = 'Notas';
         $u = new usuarios();
         $dados['notas'] = $u->notas();
         $this->template('usuarios', 'notas', $dados);

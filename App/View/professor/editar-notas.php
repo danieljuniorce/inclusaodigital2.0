@@ -6,13 +6,19 @@
 
 <ul class="collapsible" data-collapsible="accordion">
     <?php
-    foreach ($participantes as $participante) {
+    if (!empty($participantes)){    
+        foreach ($participantes as $participante) {
+            echo '<li>';
+                echo '<div class="collapsible-header">Nome: '.$participante['nome_completo'].'</div>';
+                echo '<div class="collapsible-body">
+                        <p class="center-align">EDITAR NOTAS DO PARTICIPANTE</p>
+                        <p class="center-align"><a href="/professor/editarnotas/'.$participante['matricula'].'" class="btn orange">ALTERAR NOTA</a></p>
+                    </div>';
+            echo '</li>';
+        }
+    } else {
         echo '<li>';
-            echo '<div class="collapsible-header">Nome: '.$participante['nome_completo'].'</div>';
-            echo '<div class="collapsible-body">
-                    <p class="center-align">EDITAR NOTAS DO PARTICIPANTE</p>
-                    <p class="center-align"><a href="/professor/editarnotas/'.$participante['matricula'].'" class="btn orange">ALTERAR NOTA</a></p>
-                </div>';
+                echo '<div class="collapsible-header">Nenhum participante encontrado.</div>';
         echo '</li>';
     }
     ?>
