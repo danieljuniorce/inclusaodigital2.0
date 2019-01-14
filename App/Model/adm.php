@@ -50,6 +50,10 @@ class adm extends model
 
                 if ($sql->rowCount() > 0) {
                     $_SESSION['aviso_sucesso'] = "Conta de Participante criada com sucesso.";
+
+                    //Envio de Confirmação de Criação do Novo Participante;
+                    $this->envioEmail('danieljuniorce@hotmail.com', 'E-mail Teste', 'Esse e-mail foi envio de Teste;');
+
                     header('Location: /adm/sucesso');
                     return true;
                 } else {
