@@ -1,20 +1,32 @@
+<?php 
+
+function dateHora($data) 
+{
+    return  date("d/m/Y", strtotime($data)); //exibe no formato d/m/a
+}
+
+?>
 
   <div class="carousel carousel-slider center" data-indicators="true">
-    <div class="carousel-item red white-text" href="#one!">
-      <h2>AVISOS</h2>
-      <p class="white-text">INICIOS DAS AULAS DE INFORMÁTICA BÁSICA SERÁ NO DIA 04 DE FEVEREIRO DE 2019.</p>
+    <?php if (!empty($avisos)): ?>
+      <?php foreach($avisos as $aviso): ?>
+        <div class="carousel-item orange white-text" href="#one!">
+          <h2><?=$aviso['titulo_aviso'];?></h2>
+          <p class="white-text"><?=$aviso['corpo_aviso'];?></p>
+
+          <div class="row center">
+          <br>       <br>        <br>        <br>        <br>        <br>        <br>
+            <p>Data e Hora do Aviso</p>
+            <p class="" style="postion:relative"><?php echo dateHora($aviso['data_envio']);?> / <?=$aviso['hora_envio'];?>  </p>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    <?php else :?>
+    <div class="carousel carousel-slider center" data-indicators="true">
+      <div class="carousel-item red white-text" href="#one!">
+        <h2>Nenhum aviso disponivel</h2>
+      </div>
     </div>
-    <div class="carousel-item amber white-text" href="#two!">
-      <h2>AVISOS</h2>
-      <p class="white-text">INICIOS DAS AULAS DE INFORMÁTICA BÁSICA SERÁ NO DIA 04 DE FEVEREIRO DE 2019.</p>
-    </div>
-    <div class="carousel-item green white-text" href="#three!">
-      <h2>AVISOS</h2>
-      <p class="white-text">INICIOS DAS AULAS DE INFORMÁTICA BÁSICA SERÁ NO DIA 04 DE FEVEREIRO DE 2019.</p>
-    </div>
-    <div class="carousel-item blue white-text" href="#four!">
-      <h2>AVISOS</h2>
-      <p class="white-text">INICIOS DAS AULAS DE INFORMÁTICA BÁSICA SERÁ NO DIA 04 DE FEVEREIRO DE 2019.</p>
-    </div>
+    <?php endif;?>
   </div>
   

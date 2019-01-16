@@ -32,7 +32,7 @@ class model
         }
     }
 
-    public function envioEmail($destinario, $titulo, $corpo) {
+    public function envioEmail($titulo, $corpo, $email) {
         $mail = new PHPMailer(true); 
         $mail->setLanguage('pt_br', '/optional/path/to/language/directory/');
         try {
@@ -46,12 +46,12 @@ class model
             $mail->Port = 587; 
         
             //Recipients
-            $mail->setFrom('danieljuniorce@gmail.com', 'Inclusão Digital');
-            $mail->addAddress($destinario);     // Add a recipient
+            $mail->setFrom('danieljuniorce@gmail.com', utf8_decode('Inclusão Digital'));
+            $mail->addAddress($email);     // Add a recipient
         
             $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = $titulo;
-            $mail->Body    = $corpo;
+            $mail->Subject = utf8_decode($titulo);
+            $mail->Body = utf8_decode($corpo);
         
             $mail->send();
         

@@ -42,8 +42,10 @@
                 //echo '<li><a class="dropdown-button" href="#" data-activates="requerimentos"><i class="material-icons left">vertical_split</i><i class="material-icons right">arrow_drop_down</i>Requerimentos</a></li>';
                 echo '<li><a href="/professor" class="hide-on-small-only"><i class="material-icons">work</i>Área do Professor</a></li>';
                 echo '<li><a class="dropdown-button hide-on-large-only show-on-small" data-activates="professor"><i class="material-icons">work</i><i class="material-icons right">arrow_drop_down</i>Área do Professor</a></li>';
+                echo '<li><a href="/adm/avisos" class="waves-effect"><i class="material-icons">warning</i>Criar Avisos</a></li>';
                 echo '<li><div class="divider"></div></li>';
                 echo '<li><a href="/usuarios/sair" class="waves-effect"><i class="material-icons">exit_to_app</i>Sair</a></li>';
+                
 
 
             } else {

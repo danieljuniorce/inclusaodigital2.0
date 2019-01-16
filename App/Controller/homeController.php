@@ -14,8 +14,12 @@ class homeController extends controller
 
     public function index()
     {
+        $home = new home();
+
+        $dados['avisos'] = $home->selectdAvisos();
+        
         $_SESSION['name'] = 'Página Inicial';
-        $this->template('', 'home');
+        $this->template('', 'home', $dados);
     }
 
 }

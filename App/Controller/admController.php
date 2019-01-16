@@ -201,5 +201,23 @@ class admController extends controller
         $this->template('adm', 'editarturmas', $dados);
     }
 
+    public function avisos() {
+        $dados = array();
+        $adm = new adm();
 
+        if (isset($_POST['envio_email']) && !empty($_POST['envio_email'])) {
+
+            $envioEmail = filter_var($_POST['envio_email']);
+            $tituloAviso = filter_var($_POST['titulo_aviso']);
+            $corpoAviso = filter_var($_POST['corpo_aviso']);
+            $dataAviso = date('Y-m-d');
+            $horaAviso = date('h:m:s');
+
+            $adm->criaraviso($envioEmail, $tituloAviso, $corpoAviso, $dataAviso, $horaAviso);
+            $_SESSION['aviso_sucesso'] = 'Aviso enviado com Sucesso';
+
+            header('Location: /adm/sucesso');
+        }
+        $this->template('adm', 'avisos', $dados);
+    }
 }

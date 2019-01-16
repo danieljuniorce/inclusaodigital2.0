@@ -8,7 +8,6 @@
 
 class adm extends model
 {
-
     public function novoParticipante($nomeCompleto, $dataNascimento, $estadoParticipante, $rg, $cpf, $matricula, $celular, $telefone, $email, $sexo, $senha, $tipo, $numeroTipo, $token)
     {
 
@@ -52,7 +51,7 @@ class adm extends model
                     $_SESSION['aviso_sucesso'] = "Conta de Participante criada com sucesso.";
 
                     //Envio de Confirmação de Criação do Novo Participante;
-                    $this->envioEmail('danieljuniorce@hotmail.com', 'E-mail Teste', 'Esse e-mail foi envio de Teste;');
+                    $this->envioEmail();
 
                     header('Location: /adm/sucesso');
                     return true;
@@ -237,5 +236,33 @@ class adm extends model
         } else {
             $dados = "Turma não Encontrada";
         }
+    }
+
+    public function criaraviso($envioEmail, $tituloAviso, $corpoAviso, $dataAviso, $horaAviso)
+    {
+        if (!empty($envioEmail) && !empty($tituloAviso) && !empty($corpoAviso) && !empty($dataAviso) && !empty($horaAviso)) {
+
+            $sql = "INSERT INTO avisos SET envio_email = :envioEmail, titulo_aviso = :tituloAviso, corpo_aviso = :corpoAviso, data_envio = :dataAviso, hora_envio = :horaAviso";
+            $sql = $this->pdo->prepare($sql);
+
+            $sql->bindParam(':envioEmail', $envioEmail);
+            $sql->bindParam(':tituloAviso', $tituloAviso);
+            $sql->bindParam(':corpoAviso', $corpoAviso);
+            $sql->bindParam(':dataAviso', $dataAviso);
+            $sql->bindParam(':horaAviso', $horaAviso);
+            $sql->execute();
+
+            if ($envioEmail != 'nao') {
+                $sql = "SELECT * FROM participantes";
+                $sql = $this->pdo->query($sql);
+                if ($sql->rowCount() > 0) {
+                    $participantes = $sql->fetchAll();
+                    foreach ($participantes as $participante) {
+                        $this->envioEmail($tituloAviso, $corpoAviso, $participante['email']);
+                    }
+                }
+            }
+        }
+
     }
 }

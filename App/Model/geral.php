@@ -6,15 +6,4 @@
             return $hash;
         }
 
-        public static function csrf($token) {
-
-            $token = md5(sha1($token));
-            if ($token == $_SESSION['token']) {
-                return true;
-            } else {
-                return false;
-            }
-            
-        }
-
     }
