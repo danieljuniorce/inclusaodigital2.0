@@ -14,7 +14,7 @@
                         <option value="sim">Sim</option>
                         <option value="nao">Não</option>
                     </select>
-                    <label for="envio_email">Forma de Envio</label>
+                    <label for="envio_email">Enviar para E-mail</label>
                 </div>
             </div>
             <div class="col m7 l7"></div>

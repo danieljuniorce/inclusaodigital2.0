@@ -52,13 +52,24 @@
                         <br>
                 </div>
                 <div class="col s12 m12 l6">
-                    <h5 class="center-align">ÁREA DE AVISO</h5>
+                    <h5 class="center-align">TODOS PARTICIPANTES</h5>
                     <hr>
                     <br>
-                    <p class="center-align negrito">Titulo Aviso</p>
-                    
+                    <ul class="collapsible popout">
+                        <li>
+                            <div class="collapsible-header"> <i class="material-icons">cloud</i> INFORMAÇÕES</div>
+                            <div class="collapsible-body">
+                                <P class="center-align">Dados</P>
 
-                    <p class="right-align">Data: 21/12/2018</p>
+                                Participantes Cadastrados: 10.
+
+                                <p class="center-align">FILTRO POR IDADE</p>
+                                13 ~ 17: 10 Participantes.<br>
+                                18 ~ 29: 20 Participantes.<br>
+                                30 ~ Diante: 30 Participantes.
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

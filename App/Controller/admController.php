@@ -93,6 +93,11 @@ class admController extends controller
         $this->template('adm', 'participantes-ativos', $dados);
     }
 
+    public function partipantes()
+    {
+        
+    }
+
     public function editar($matricula)
     {
         $dados = array();
