@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10-Jan-2019 às 22:57
+-- Generation Time: 24-Jan-2019 às 05:08
 -- Versão do servidor: 10.1.37-MariaDB
--- versão do PHP: 7.2.12
+-- versão do PHP: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `inclusaodigital`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `avisos`
+--
+
+CREATE TABLE `avisos` (
+  `id` int(11) NOT NULL,
+  `envio_email` varchar(10) NOT NULL DEFAULT 'nao',
+  `titulo_aviso` varchar(120) NOT NULL,
+  `corpo_aviso` varchar(600) NOT NULL,
+  `data_envio` date NOT NULL,
+  `hora_envio` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -157,6 +172,12 @@ INSERT INTO `turmas` (`id`, `inicio`, `final`, `criacao`, `turma`, `curso`, `tur
 --
 
 --
+-- Indexes for table `avisos`
+--
+ALTER TABLE `avisos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `banco_de_questao`
 --
 ALTER TABLE `banco_de_questao`
@@ -189,6 +210,12 @@ ALTER TABLE `turmas`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `avisos`
+--
+ALTER TABLE `avisos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `banco_de_questao`

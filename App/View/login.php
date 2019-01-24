@@ -16,7 +16,7 @@ $_SESSION['token'] = $token;
     <title>Login - Inclusão Digital</title>
 </head>
 <body class="orange lighten-2">
-  <div class="row container" style="top: 170px; position: relative;">
+  <div class="row container" style="top: 60px; position: relative;">
     <div class="col s0 m3 l3"></div>
     <div class="col s12 m6 l6">
 
