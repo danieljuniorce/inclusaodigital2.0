@@ -20,6 +20,7 @@ class usuariosController extends controller
 
     public function login()
     {
+        $dados = array();
         $_SESSION['name'] = 'Entrar';
         $u = new usuarios();
         if (!empty($_POST['matricula']) && !empty($_POST['senha'])) {
@@ -29,12 +30,20 @@ class usuariosController extends controller
             $token = filter_var($_POST['token']);
                 
             $u->entrar($matricula, $senha, $token);
+
             header('Location: /home');
         } else {
 
         }
 
-        $this->view('', 'login');
+        $this->view('', 'login', $dados);
+    }
+
+    public function recuperar()
+    {
+        $dados = array();
+
+        $this->view('', 'recupera-senha', $dados);
     }
 
     public function sair()

@@ -24,9 +24,11 @@ class usuarios extends model
                     $_SESSION['nome_completo'] = $user['nome_completo'];
                     $_SESSION['acesso'] = $user['acesso'];
                     $_SESSION['sexo'] = $user['sexo'];
-
+                    unset($_SESSION['errorLogin']);
                     return $user;
                     header('Location: /home');
+                } else {
+                    $_SESSION['errorLogin'] = 'Senha ou Matricula, foram digitadas incorretamente.';
                 }
 
             } else {

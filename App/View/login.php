@@ -27,15 +27,21 @@ $_SESSION['token'] = $token;
         <form method="POST" class="col s12">
           <div class="input-field s6">
             <i class="material-icons prefix">email</i>
-            <input type="text" id="matricula" name="matricula" class="validate">
+            <input type="text" id="matricula" name="matricula" class="validate" required>
             <label for="matricula">Matricula</label>
           </div>
           <div class="input-field s6">
             <i class="material-icons prefix">verified_user</i>
-            <input type="password" id="senha" name="senha">
+            <input type="password" id="senha" name="senha" required>
             <label for="senha">Senha</label>
+              <?php if(!empty($_SESSION['errorLogin'])): ?>
+                  <p class="red-text"><?php echo $_SESSION['errorLogin'];?></p>
+              <?php else: ?>
+
+              <?php endif; ?>
           </div>
-          <br>
+            <br>
+            <a class="btn left red" href="/usuarios/recuperar">Esqueci a Senha</a>
           <button class="btn right orange" type="submit">Entrar</button>&nbsp;&nbsp;
           <input type="hidden" value="<?php echo $token;?>" name="token">
         </form>
