@@ -41,7 +41,7 @@ $_SESSION['token'] = $token;
               <?php endif; ?>
           </div>
             <br>
-            <a class="btn left red" href="/usuarios/recuperar">Esqueci a Senha</a>
+            <!--<a class="btn left red" href="/usuarios/recuperar">Esqueci a Senha</a>-->
           <button class="btn right orange" type="submit">Entrar</button>&nbsp;&nbsp;
           <input type="hidden" value="<?php echo $token;?>" name="token">
         </form>

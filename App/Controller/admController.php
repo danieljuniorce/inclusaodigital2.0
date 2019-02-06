@@ -116,9 +116,6 @@ class admController extends controller
                 $cpf = filter_var($_POST['cpf']);
                 $celular = filter_var($_POST['celular']);
                 $telefone = filter_var($_POST['telefone']);
-                $tipoCurso = filter_var($_POST['curso']);
-                $horario = filter_var($_POST['horario']);
-                $turno = filter_var($_POST['turno']);
                 $estadoParticipante = filter_var($_POST['estado_participante']);
                 $token = filter_var($_POST['token']);
 

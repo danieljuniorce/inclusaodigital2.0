@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 24-Jan-2019 às 05:08
+-- Generation Time: 06-Fev-2019 às 04:03
 -- Versão do servidor: 10.1.37-MariaDB
 -- versão do PHP: 7.3.1
 
@@ -36,6 +36,14 @@ CREATE TABLE `avisos` (
   `data_envio` date NOT NULL,
   `hora_envio` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `avisos`
+--
+
+INSERT INTO `avisos` (`id`, `envio_email`, `titulo_aviso`, `corpo_aviso`, `data_envio`, `hora_envio`) VALUES
+(1, 'sim', 'Titulo Teste', 'Corpo do Aviso', '2019-01-24', '04:01:35'),
+(2, 'nao', 'Titulo Teste', '232321312', '2019-02-05', '07:02:39');
 
 -- --------------------------------------------------------
 
@@ -80,9 +88,15 @@ CREATE TABLE `frequencias` (
 --
 
 INSERT INTO `frequencias` (`id`, `matricula`, `presenca`, `falta`, `data_frequencia`) VALUES
-(1, '2019826767581', 3, 4, '2019-01-04(falta)</br>2019-01-04 (falta)</br>2019-01-05 (presenca)</br>2019-01-04 (falta)</br>'),
-(9, '2019698007707', 18, 10, NULL),
-(10, '2019228', 0, 0, NULL);
+(1, '20191', 5, 4, '2019-01-04(falta)</br>2019-01-04 (falta)</br>2019-01-05 (presenca)</br>2019-01-04 (falta)</br>2019-01-24 (presenca)</br>2019-02-05 (presenca)</br>'),
+(9, '20192', 18, 10, NULL),
+(10, '2019228', 0, 0, NULL),
+(11, '2019121', 0, 0, NULL),
+(12, '2019121', 0, 0, NULL),
+(13, '2019121', 0, 0, NULL),
+(14, '2019121', 0, 0, NULL),
+(15, '2019121', 0, 0, NULL),
+(16, '2019121', 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -104,9 +118,15 @@ CREATE TABLE `notas` (
 --
 
 INSERT INTO `notas` (`id`, `matricula_participante`, `modulo_um`, `modulo_dois`, `modulo_tres`, `modulo_quatro`) VALUES
-(1, '2019826767581', '1', '2', '2', '2'),
-(9, '2019698007707', '10', '0', '0', '0'),
-(10, '2019228', '0', '0', '0', '0');
+(1, '20191', '1', '2', '2', '2'),
+(9, '20192', '10', '0', '0', '0'),
+(10, '2019228', '0', '0', '0', '0'),
+(11, '2019121', '0', '0', '0', '0'),
+(12, '2019121', '0', '0', '0', '0'),
+(13, '2019121', '0', '0', '0', '0'),
+(14, '2019121', '0', '0', '0', '0'),
+(15, '2019121', '0', '0', '0', '0'),
+(16, '2019121', '0', '0', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -138,8 +158,8 @@ CREATE TABLE `participantes` (
 --
 
 INSERT INTO `participantes` (`id`, `nome_completo`, `data_nascimento`, `estado_participante`, `rg`, `cpf`, `matricula`, `celular`, `telefone`, `email`, `sexo`, `turma`, `acesso`, `senha`, `tipo`, `numeracao_tipo`) VALUES
-(4, 'Daniel Junior de Souza Lima', '1998-05-22', 'ativo', '4545454', '45454545455', '2019826767581', '85988637165', '85988637165', 'danieljuniorce@hotmail.com', 'masculino', '2019160', 'adm', '$i$d$l$f$ccf795cbc72ed7a28406ae4908ea93ecf3ab0d8d1', NULL, NULL),
-(12, 'Souza Lima', '2000-12-11', 'ativo', '4889489489', '48484984', '2019698007707', '4884894894', '84449849', 'danieljunior@gmail.com', 'masculino', NULL, 'user', '$i$d$l$f$c5895717e6f93c09419dfda8f5da2879fb6a05efe', NULL, NULL),
+(4, 'Daniel Junior de Souza Lima', '1998-05-22', 'ativo', '4545454', '45454545455', '20191', '85988637165', '85988637165', 'danieljuniorce@hotmail.com', 'masculino', '2019160', 'adm', '$i$d$l$f$ccf795cbc72ed7a28406ae4908ea93ecf3ab0d8d1', NULL, NULL),
+(12, 'Souza Lima', '1977-12-11', 'ativo', '4889489489', '48484984', '20192', '4884894894', '84449849', 'danieljunior@gmail.com', 'masculino', NULL, 'user', '$i$d$l$f$c5895717e6f93c09419dfda8f5da2879fb6a05efe', NULL, NULL),
 (13, 'Jane Carla', '1998-01-11', 'ativo', '0111415411', '5454564564', '2019228', '8598854784', '84844455', 'janecarla2018@hotmail.com', 'feminina', NULL, 'user', '$i$d$l$f$c5895717e6f93c09419dfda8f5da2879fb6a05efe', 'avulso', '12.200');
 
 -- --------------------------------------------------------
@@ -215,7 +235,7 @@ ALTER TABLE `turmas`
 -- AUTO_INCREMENT for table `avisos`
 --
 ALTER TABLE `avisos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `banco_de_questao`
@@ -227,19 +247,19 @@ ALTER TABLE `banco_de_questao`
 -- AUTO_INCREMENT for table `frequencias`
 --
 ALTER TABLE `frequencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `notas`
 --
 ALTER TABLE `notas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `participantes`
 --
 ALTER TABLE `participantes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `turmas`
