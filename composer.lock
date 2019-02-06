@@ -4,20 +4,64 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6d67203b6e9fc952ae681c538683a497",
+    "content-hash": "c9f4f4e8f3a80a2e17690be001dd57e3",
     "packages": [
         {
-            "name": "phpmailer/phpmailer",
-            "version": "v6.0.6",
+            "name": "heroku/heroku-buildpack-php",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "8190d73eb5def11a43cfb020b7f36db65330698c"
+                "url": "https://github.com/heroku/heroku-buildpack-php.git",
+                "reference": "ec9ffb83d2101bf4b42e09416a35c48b5dd2557e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/8190d73eb5def11a43cfb020b7f36db65330698c",
-                "reference": "8190d73eb5def11a43cfb020b7f36db65330698c",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/ec9ffb83d2101bf4b42e09416a35c48b5dd2557e",
+                "reference": "ec9ffb83d2101bf4b42e09416a35c48b5dd2557e",
+                "shasum": ""
+            },
+            "bin": [
+                "bin/heroku-hhvm-apache2",
+                "bin/heroku-hhvm-nginx",
+                "bin/heroku-php-apache2",
+                "bin/heroku-php-nginx"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Zuelke",
+                    "email": "dz@heroku.com"
+                }
+            ],
+            "description": "Toolkit for starting a PHP application locally, with or without foreman, using the same config for PHP/HHVM and Apache2/Nginx as on Heroku",
+            "homepage": "https://github.com/heroku/heroku-buildpack-php",
+            "keywords": [
+                "apache",
+                "apache2",
+                "foreman",
+                "heroku",
+                "hhvm",
+                "nginx",
+                "php"
+            ],
+            "time": "2019-01-14T17:29:14+00:00"
+        },
+        {
+            "name": "phpmailer/phpmailer",
+            "version": "v6.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPMailer/PHPMailer.git",
+                "reference": "0c41a36d4508d470e376498c1c0c527aa36a2d59"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/0c41a36d4508d470e376498c1c0c527aa36a2d59",
+                "reference": "0c41a36d4508d470e376498c1c0c527aa36a2d59",
                 "shasum": ""
             },
             "require": {
@@ -70,13 +114,15 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2018-11-16T00:41:32+00:00"
+            "time": "2019-02-01T15:04:28+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "heroku/heroku-buildpack-php": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
