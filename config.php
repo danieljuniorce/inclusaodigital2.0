@@ -13,5 +13,4 @@ $config = array();
 
 //Nome do Site
 $config['NomeProject'] = 'Inclusão Digital';
-define('HASH_ECRYPT', md5(sha1('inclusaodigital2019')));
 

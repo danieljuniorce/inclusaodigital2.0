@@ -1,4 +1,7 @@
 
+  body {
+    background-color: #696969;
+  }
   /* label color */
   .input-field label {
     color: #000;

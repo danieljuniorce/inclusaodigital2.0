@@ -1,8 +1,22 @@
-        <div class="card-panel">
+<?php
+function idadePelaDataNascimento($data)
+{
+    $date = date("d/m/Y", strtotime($data));
+
+    list($dia, $mes, $ano) = explode('/', $date);
+
+    $hoje = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+
+    $nascimento = mktime(0, 0, 0, $mes, $dia, $ano);
+
+    return $idade = floor((((($hoje - $nascimento) / 60) / 60) / 24) / 365.25);
+}
+?>
+<div class="card-panel">
             <br>
             <div class="orange">
                 <br>
-                <h4 class="center-align color-white"><span class="text-white">ÁREA ADMINISTRATIVA</span></h4>
+                <h4 class="center-align color-white"><span class="text-white">PARTICIPANTES EM GERAL</span></h4>
                 <br>
             </div>
             <h4 class="center-align" style="font-weight:bolder;"></h4>
@@ -61,12 +75,27 @@
                             <div class="collapsible-body">
                                 <P class="center-align">Dados</P>
 
-                                Participantes Cadastrados: 10.
+                                Participantes Cadastrados: <?php echo $quantidade;?>.
 
                                 <p class="center-align">FILTRO POR IDADE</p>
-                                13 ~ 17: 10 Participantes.<br>
-                                18 ~ 29: 20 Participantes.<br>
-                                30 ~ Diante: 30 Participantes.
+                                <?php
+                                $primeiraIdade = 0;
+                                $segundaIdade = 0;
+                                $teceiraIdade = 0;
+                                foreach ($idades as $idade)
+                                {
+                                    if (idadePelaDataNascimento($idade['data_nascimento']) >= 13 && idadePelaDataNascimento($idade['data_nascimento']) <= 17 ) {
+                                        $primeiraIdade++;
+                                    } else if (idadePelaDataNascimento($idade['data_nascimento']) >= 18 && idadePelaDataNascimento($idade['data_nascimento']) <= 29) {
+                                        $segundaIdade++;
+                                    } else if (idadePelaDataNascimento($idade['data_nascimento']) >= 30) {
+                                        $teceiraIdade++;
+                                    }
+                                }
+                                ?>
+                                13 ~ 17: <?php echo $primeiraIdade;?> Participantes.<br>
+                                18 ~ 29: <?php echo $segundaIdade;?> Participantes.<br>
+                                30 ~ Diante: <?php echo $teceiraIdade;?> Participantes.
                             </div>
                         </li>
                     </ul>

@@ -26,11 +26,12 @@
 <br>
 <div class="container">
     <ul class="collapsible popout" data-collapsible="accordion">
-        <?php if (!empty($dados)): ?>
+        <?php $i = 1; if (!empty($dados)): ?>
             <?php foreach ($dados as $participante):?>
                 <li>
                     <div class="collapsible-header">
                         <i class="material-icons">face</i>
+                        <?php echo $i++.' - ';?>
                         <?=$participante['nome_completo'];?>
                     </div>
                     <div class="collapsible-body">

@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../../src/css/style.css"/>
     <title><?php echo $_SESSION['name'];?> - Inclusão Digital</title>
 </head>
-<body class="grey lighten-5">
+<body class="">
     <ul id="slide-out" class="side-nav fixed ">
         <li>
         <div class="user-view">
@@ -93,23 +93,38 @@
         <?php  $this->LoadViewTemplate($viewPaste, $viewName, $viewData);?>
     </div>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="../../src/js/materialize.js"></script>
-<script type="text/javascript" src="../../src/js/script.js"></script>
-<script>
- $(document).ready(function() {
-    $('select').material_select();
-    $('.modal').modal();
-    $("#btn").sideNav();
-    $('.carousel').carousel();
-    $('.dropdown-button').dropdown({
-      belowOrigin: true, // Displays dropdown below the button
-      alignment: 'right', // Displays dropdown with edge aligned to the left of button
-      stopPropagation: false, // Stops event propagation
-    }
-  );
-  });    
-</script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="../../src/js/materialize.js"></script>
+    <script type="text/javascript" src="../../src/js/script.js"></script>
+    <!--Start of Tawk.to Script-->
+    <?php if ($_SESSION['acesso'] == 'user'):?>
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/5c59d46c6cb1ff3c14cb3c3b/default';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <?php endif; ?>
+    <!--End of Tawk.to Script-->
+    <script>
+     $(document).ready(function() {
+        $('select').material_select();
+        $('.modal').modal();
+        $("#btn").sideNav();
+        $('.carousel').carousel();
+        $('.dropdown-button').dropdown({
+          belowOrigin: true, // Displays dropdown below the button
+          alignment: 'right', // Displays dropdown with edge aligned to the left of button
+          stopPropagation: false, // Stops event propagation
+        }
+      );
+      });
+    </script>
 </body>
 </html>
 

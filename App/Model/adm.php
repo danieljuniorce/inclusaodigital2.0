@@ -51,7 +51,7 @@ class adm extends model
                     $_SESSION['aviso_sucesso'] = "Conta de Participante criada com sucesso.";
 
                     //Envio de Confirmação de Criação do Novo Participante;
-                    $this->envioEmail();
+                    //$this->envioEmail();
 
                     header('Location: /adm/sucesso');
                     return true;
@@ -264,5 +264,25 @@ class adm extends model
             }
         }
 
+    }
+    public function quantidadeParticipante()
+    {
+        $sql = "SELECT * FROM participantes";
+        $sql = $this->pdo->query($sql);
+
+        if($sql->rowCount() > 0) {
+            return $sql->rowCount();
+        } else {
+            return '0';
+        }
+    }
+    public function idadePorPaticipante()
+    {
+        $sql = "SELECT * FROM participantes";
+        $sql = $this->pdo->query($sql);
+
+        if ($sql->rowCount() > 0) {
+            return $sql->fetchAll();
+        }
     }
 }

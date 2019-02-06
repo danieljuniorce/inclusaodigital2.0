@@ -4,7 +4,6 @@ class admController extends controller
 {
     public function __construct()
     {
-        
         session_start();
         if (isset($_SESSION['acesso']) && $_SESSION['acesso'] && $_SESSION['acesso'] == 'adm') {
 
@@ -13,14 +12,17 @@ class admController extends controller
         } else {
             header('Location: /usuarios/login');
         }
-        
-
     }
 
     public function index()
     {
         $dados = array();
         $_SESSION['name'] = 'Administração';
+
+        $adm = new Adm();
+        $dados['quantidade'] = $adm->quantidadeParticipante();
+        $dados['idades'] = $adm->idadePorPaticipante();
+
         $this->template('adm', "adm-home", $dados);
     }
 
@@ -33,13 +35,10 @@ class admController extends controller
             //Variaveis com paramentros passado pelo cadastro;
             $nomeCompleto = filter_var($_POST['nome_completo']);
             $dataNascimento = filter_var($_POST['data_nascimento']);
-            $tipoCurso = filter_var($_POST['tipo_curso']);
             $estadoParticipante = filter_var($_POST['estado_participante']);
             $rg = filter_var($_POST['rg']);
             $cpf = filter_var($_POST['cpf']);
             $matricula = filter_var($_POST['matricula']);
-            $turno = filter_var($_POST['turno']);
-            $horario = filter_var($_POST['horario']);
             $celular = filter_var($_POST['celular']);
             $telefone = filter_var($_POST['telefone']);
             $email = filter_var($_POST['email']);

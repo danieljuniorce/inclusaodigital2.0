@@ -31,12 +31,22 @@ $_SESSION['token'] = $token;
                         <label for="matricula">Matricula</label>
                     </div>
                     <div class="input-field s6">
+                        <i class="material-icons prefix">calendar_today</i>
+                        <input type="text" name="datanascimento" id="datanascimento">
+                        <label for="datanascimento">Data de Nascimento</label>
+                    </div>
+                    <div class="input-field s6">
                         <i class="material-icons prefix">verified_user</i>
                         <input type="password" id="senha" name="senha" required>
                         <label for="senha">Senha</label>
                     </div>
+                    <div class="input-field s6">
+                        <i class="material-icons prefix">verified_user</i>
+                        <input type="password" id="confirmasenha" name="confirmasenha" required>
+                        <label for="confirmasenha">Confirma Senha</label>
+                    </div>
                     <br>
-                    <button class="btn right orange" type="submit">Entrar</button>&nbsp;&nbsp;
+                    <button class="btn right orange pulse" type="submit">Recuperar Senha</button>&nbsp;&nbsp;
                     <input type="hidden" value="<?php echo $token;?>" name="token">
                 </form>
             </div>
@@ -48,5 +58,18 @@ $_SESSION['token'] = $token;
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="../../src/js/materialize.js"></script>
 <script type="text/javascript" src="../../src/js/script.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            today: 'Today',
+            clear: 'Clear',
+            close: 'Ok',
+            closeOnSelect: false // Close upon selecting a date,
+            container: undefined, // ex. 'body' will append picker to body
+        });
+    });
+</script>
 </body>
 </html>

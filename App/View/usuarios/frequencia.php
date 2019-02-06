@@ -8,7 +8,7 @@
     <div class="container">
         <div>
             <div class="card-panel center-align orange">
-                <h5 class="btn orange z-depth-0 darken-4">Frequência em Porcetagem: <?php echo $frequencia.'%'; ?></h5>
+                <h5 class="btn black z-depth-0 darken-4">Frequência em Porcetagem: <?php echo $frequencia.'%'; ?></h5>
             </div>
         </div>
     </div>
