@@ -1,6 +1,6 @@
 <?php
     require_once('Core/core.php');
-    ini_set('display_errors', 'on');
+    require_once 'vendor/autoload.php';
     spl_autoload_register(function($class){
 
         if(strpos($class, 'Controller') > -1)
