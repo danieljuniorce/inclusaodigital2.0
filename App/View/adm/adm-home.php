@@ -79,6 +79,7 @@ function idadePelaDataNascimento($data)
 
                                 <p class="center-align">FILTRO POR IDADE</p>
                                 <?php
+                                /*
                                 $primeiraIdade = 0;
                                 $segundaIdade = 0;
                                 $teceiraIdade = 0;
@@ -96,6 +97,11 @@ function idadePelaDataNascimento($data)
                                 13 ~ 17: <?php echo $primeiraIdade;?> Participantes.<br>
                                 18 ~ 29: <?php echo $segundaIdade;?> Participantes.<br>
                                 30 ~ Diante: <?php echo $teceiraIdade;?> Participantes.
+                                 
+                                
+                                 */
+                                ?>
+                                
                             </div>
                         </li>
                     </ul>

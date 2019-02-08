@@ -50,9 +50,6 @@ class adm extends model
                 if ($sql->rowCount() > 0) {
                     $_SESSION['aviso_sucesso'] = "Conta de Participante criada com sucesso.";
 
-                    //Envio de Confirmação de Criação do Novo Participante;
-                    //$this->envioEmail();
-
                     header('Location: /adm/sucesso');
                     return true;
                 } else {
@@ -74,7 +71,6 @@ class adm extends model
         $sql = $this->pdo->query($sql);
 
         if ($sql->rowCount() > 0) {
-
             return $sql->fetchAll();
         } else {
             return false;
@@ -252,16 +248,6 @@ class adm extends model
             $sql->bindParam(':horaAviso', $horaAviso);
             $sql->execute();
 
-            if ($envioEmail != 'nao') {
-                $sql = "SELECT * FROM participantes";
-                $sql = $this->pdo->query($sql);
-                if ($sql->rowCount() > 0) {
-                    $participantes = $sql->fetchAll();
-                    foreach ($participantes as $participante) {
-                        $this->envioEmail($tituloAviso, $corpoAviso, $participante['email']);
-                    }
-                }
-            }
         }
 
     }
